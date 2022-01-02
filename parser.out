@@ -1,0 +1,3801 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    SHOW
+
+Grammar
+
+Rule 0     S' -> expression
+Rule 1     expression -> dml END
+Rule 2     expression -> ddl END
+Rule 3     dml -> select
+Rule 4     dml -> update
+Rule 5     dml -> insert
+Rule 6     dml -> delete
+Rule 7     ddl -> create
+Rule 8     ddl -> alter
+Rule 9     ddl -> drop
+Rule 10    select -> SELECT columns FROM table join where group_by having order_by limit
+Rule 11    select -> SELECT columns into table FROM table join where group_by having order_by limit
+Rule 12    table -> table COMMA table
+Rule 13    table -> STRING AS STRING
+Rule 14    table -> STRING STRING
+Rule 15    table -> STRING
+Rule 16    table -> DATASOURCE
+Rule 17    join -> INNER JOIN table on join
+Rule 18    join -> LEFT JOIN table on join
+Rule 19    join -> RIGHT JOIN table on join
+Rule 20    join -> FULL JOIN table on join
+Rule 21    join -> JOIN table on join
+Rule 22    join -> empty
+Rule 23    on -> ON item COMPARISON item
+Rule 24    where -> WHERE conditions
+Rule 25    where -> empty
+Rule 26    group_by -> GROUP BY strings
+Rule 27    group_by -> empty
+Rule 28    having -> HAVING conditions
+Rule 29    having -> empty
+Rule 30    order_by -> ORDER BY order
+Rule 31    order_by -> empty
+Rule 32    limit -> LIMIT numbers
+Rule 33    limit -> empty
+Rule 34    order -> order COMMA order
+Rule 35    order -> string order_type
+Rule 36    order_type -> ASC
+Rule 37    order_type -> DESC
+Rule 38    order_type -> empty
+Rule 39    update -> UPDATE table SET set where
+Rule 40    set -> set COMMA set
+Rule 41    set -> item COMPARISON item
+Rule 42    insert -> INSERT into table insert_columns VALUES values
+Rule 43    insert -> INSERT into table insert_columns select
+Rule 44    into -> INTO
+Rule 45    into -> empty
+Rule 46    insert_columns -> ( columns )
+Rule 47    insert_columns -> empty
+Rule 48    value -> value COMMA value
+Rule 49    value -> string
+Rule 50    value -> NUMBER
+Rule 51    values -> values COMMA values
+Rule 52    values -> ( value )
+Rule 53    delete -> DELETE FROM table where
+Rule 54    create -> CREATE TABLE string ( create_columns )
+Rule 55    create_columns -> create_columns COMMA create_columns
+Rule 56    create_columns -> string datatype
+Rule 57    datatype -> INT
+Rule 58    datatype -> INTEGER
+Rule 59    datatype -> TINYINT
+Rule 60    datatype -> SMALLINT
+Rule 61    datatype -> MEDIUMINT
+Rule 62    datatype -> BIGINT
+Rule 63    datatype -> FLOAT
+Rule 64    datatype -> DOUBLE
+Rule 65    datatype -> DECIMAL
+Rule 66    datatype -> CHAR ( NUMBER )
+Rule 67    datatype -> VARCHAR ( NUMBER )
+Rule 68    alter -> ALTER TABLE string change_column
+Rule 69    change_column -> ADD string datatype
+Rule 70    change_column -> DROP COLUMN string
+Rule 71    change_column -> ALTER COLUMN string datatype
+Rule 72    drop -> DROP TABLE string
+Rule 73    columns -> columns COMMA columns
+Rule 74    columns -> column_as
+Rule 75    columns -> column
+Rule 76    column_as -> column AS item
+Rule 77    column_as -> column item
+Rule 78    column -> function ( distinct_item )
+Rule 79    column -> function ( item )
+Rule 80    column -> distinct_item
+Rule 81    column -> item
+Rule 82    distinct_item -> DISTINCT item
+Rule 83    distinct_item -> DISTINCT ( item )
+Rule 84    function -> COUNT
+Rule 85    function -> SUM
+Rule 86    function -> AVG
+Rule 87    function -> MIN
+Rule 88    function -> MAX
+Rule 89    item -> string
+Rule 90    item -> NUMBER
+Rule 91    item -> *
+Rule 92    item -> string . item
+Rule 93    numbers -> numbers COMMA numbers
+Rule 94    numbers -> NUMBER
+Rule 95    strings -> strings COMMA strings
+Rule 96    strings -> string
+Rule 97    items -> strings
+Rule 98    items -> numbers
+Rule 99    string -> STRING
+Rule 100   string -> QSTRING
+Rule 101   conditions -> conditions AND conditions
+Rule 102   conditions -> conditions OR conditions
+Rule 103   conditions -> ( conditions )
+Rule 104   conditions -> compare
+Rule 105   compare -> column COMPARISON item
+Rule 106   compare -> column like QSTRING
+Rule 107   compare -> column BETWEEN item AND item
+Rule 108   compare -> column IS null
+Rule 109   compare -> column in lritems
+Rule 110   lritems -> ( items )
+Rule 111   like -> LIKE
+Rule 112   like -> NOT LIKE
+Rule 113   in -> IN
+Rule 114   in -> NOT IN
+Rule 115   null -> NULL
+Rule 116   null -> NOT NULL
+Rule 117   empty -> <empty>
+
+Terminals, with rules where they appear
+
+(                    : 46 52 54 66 67 78 79 83 103 110
+)                    : 46 52 54 66 67 78 79 83 103 110
+*                    : 91
+.                    : 92
+ADD                  : 69
+ALTER                : 68 71
+AND                  : 101 107
+AS                   : 13 76
+ASC                  : 36
+AVG                  : 86
+BETWEEN              : 107
+BIGINT               : 62
+BY                   : 26 30
+CHAR                 : 66
+COLUMN               : 70 71
+COMMA                : 12 34 40 48 51 55 73 93 95
+COMPARISON           : 23 41 105
+COUNT                : 84
+CREATE               : 54
+DATASOURCE           : 16
+DECIMAL              : 65
+DELETE               : 53
+DESC                 : 37
+DISTINCT             : 82 83
+DOUBLE               : 64
+DROP                 : 70 72
+END                  : 1 2
+FLOAT                : 63
+FROM                 : 10 11 53
+FULL                 : 20
+GROUP                : 26
+HAVING               : 28
+IN                   : 113 114
+INNER                : 17
+INSERT               : 42 43
+INT                  : 57
+INTEGER              : 58
+INTO                 : 44
+IS                   : 108
+JOIN                 : 17 18 19 20 21
+LEFT                 : 18
+LIKE                 : 111 112
+LIMIT                : 32
+MAX                  : 88
+MEDIUMINT            : 61
+MIN                  : 87
+NOT                  : 112 114 116
+NULL                 : 115 116
+NUMBER               : 50 66 67 90 94
+ON                   : 23
+OR                   : 102
+ORDER                : 30
+QSTRING              : 100 106
+RIGHT                : 19
+SELECT               : 10 11
+SET                  : 39
+SHOW                 : 
+SMALLINT             : 60
+STRING               : 13 13 14 14 15 99
+SUM                  : 85
+TABLE                : 54 68 72
+TINYINT              : 59
+UPDATE               : 39
+VALUES               : 42
+VARCHAR              : 67
+WHERE                : 24
+error                : 
+
+Nonterminals, with rules where they appear
+
+alter                : 8
+change_column        : 68
+column               : 75 76 77 105 106 107 108 109
+column_as            : 74
+columns              : 10 11 46 73 73
+compare              : 104
+conditions           : 24 28 101 101 102 102 103
+create               : 7
+create_columns       : 54 55 55
+datatype             : 56 69 71
+ddl                  : 2
+delete               : 6
+distinct_item        : 78 80
+dml                  : 1
+drop                 : 9
+empty                : 22 25 27 29 31 33 38 45 47
+expression           : 0
+function             : 78 79
+group_by             : 10 11
+having               : 10 11
+in                   : 109
+insert               : 5
+insert_columns       : 42 43
+into                 : 11 42 43
+item                 : 23 23 41 41 76 77 79 81 82 83 92 105 107 107
+items                : 110
+join                 : 10 11 17 18 19 20 21
+like                 : 106
+limit                : 10 11
+lritems              : 109
+null                 : 108
+numbers              : 32 93 93 98
+on                   : 17 18 19 20 21
+order                : 30 34 34
+order_by             : 10 11
+order_type           : 35
+select               : 3 43
+set                  : 39 40 40
+string               : 35 49 54 56 68 69 70 71 72 89 92 96
+strings              : 26 95 95 97
+table                : 10 11 11 12 12 17 18 19 20 21 39 42 43 53
+update               : 4
+value                : 48 48 52
+values               : 42 51 51
+where                : 10 11 39 53
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . expression
+    (1) expression -> . dml END
+    (2) expression -> . ddl END
+    (3) dml -> . select
+    (4) dml -> . update
+    (5) dml -> . insert
+    (6) dml -> . delete
+    (7) ddl -> . create
+    (8) ddl -> . alter
+    (9) ddl -> . drop
+    (10) select -> . SELECT columns FROM table join where group_by having order_by limit
+    (11) select -> . SELECT columns into table FROM table join where group_by having order_by limit
+    (39) update -> . UPDATE table SET set where
+    (42) insert -> . INSERT into table insert_columns VALUES values
+    (43) insert -> . INSERT into table insert_columns select
+    (53) delete -> . DELETE FROM table where
+    (54) create -> . CREATE TABLE string ( create_columns )
+    (68) alter -> . ALTER TABLE string change_column
+    (72) drop -> . DROP TABLE string
+
+    SELECT          shift and go to state 11
+    UPDATE          shift and go to state 12
+    INSERT          shift and go to state 13
+    DELETE          shift and go to state 14
+    CREATE          shift and go to state 15
+    ALTER           shift and go to state 16
+    DROP            shift and go to state 17
+
+    expression                     shift and go to state 1
+    dml                            shift and go to state 2
+    ddl                            shift and go to state 3
+    select                         shift and go to state 4
+    update                         shift and go to state 5
+    insert                         shift and go to state 6
+    delete                         shift and go to state 7
+    create                         shift and go to state 8
+    alter                          shift and go to state 9
+    drop                           shift and go to state 10
+
+state 1
+
+    (0) S' -> expression .
+
+
+
+state 2
+
+    (1) expression -> dml . END
+
+    END             shift and go to state 18
+
+
+state 3
+
+    (2) expression -> ddl . END
+
+    END             shift and go to state 19
+
+
+state 4
+
+    (3) dml -> select .
+
+    END             reduce using rule 3 (dml -> select .)
+
+
+state 5
+
+    (4) dml -> update .
+
+    END             reduce using rule 4 (dml -> update .)
+
+
+state 6
+
+    (5) dml -> insert .
+
+    END             reduce using rule 5 (dml -> insert .)
+
+
+state 7
+
+    (6) dml -> delete .
+
+    END             reduce using rule 6 (dml -> delete .)
+
+
+state 8
+
+    (7) ddl -> create .
+
+    END             reduce using rule 7 (ddl -> create .)
+
+
+state 9
+
+    (8) ddl -> alter .
+
+    END             reduce using rule 8 (ddl -> alter .)
+
+
+state 10
+
+    (9) ddl -> drop .
+
+    END             reduce using rule 9 (ddl -> drop .)
+
+
+state 11
+
+    (10) select -> SELECT . columns FROM table join where group_by having order_by limit
+    (11) select -> SELECT . columns into table FROM table join where group_by having order_by limit
+    (73) columns -> . columns COMMA columns
+    (74) columns -> . column_as
+    (75) columns -> . column
+    (76) column_as -> . column AS item
+    (77) column_as -> . column item
+    (78) column -> . function ( distinct_item )
+    (79) column -> . function ( item )
+    (80) column -> . distinct_item
+    (81) column -> . item
+    (84) function -> . COUNT
+    (85) function -> . SUM
+    (86) function -> . AVG
+    (87) function -> . MIN
+    (88) function -> . MAX
+    (82) distinct_item -> . DISTINCT item
+    (83) distinct_item -> . DISTINCT ( item )
+    (89) item -> . string
+    (90) item -> . NUMBER
+    (91) item -> . *
+    (92) item -> . string . item
+    (99) string -> . STRING
+    (100) string -> . QSTRING
+
+    COUNT           shift and go to state 26
+    SUM             shift and go to state 27
+    AVG             shift and go to state 28
+    MIN             shift and go to state 29
+    MAX             shift and go to state 30
+    DISTINCT        shift and go to state 31
+    NUMBER          shift and go to state 33
+    *               shift and go to state 34
+    STRING          shift and go to state 35
+    QSTRING         shift and go to state 36
+
+    columns                        shift and go to state 20
+    column_as                      shift and go to state 21
+    column                         shift and go to state 22
+    item                           shift and go to state 23
+    function                       shift and go to state 24
+    distinct_item                  shift and go to state 25
+    string                         shift and go to state 32
+
+state 12
+
+    (39) update -> UPDATE . table SET set where
+    (12) table -> . table COMMA table
+    (13) table -> . STRING AS STRING
+    (14) table -> . STRING STRING
+    (15) table -> . STRING
+    (16) table -> . DATASOURCE
+
+    STRING          shift and go to state 38
+    DATASOURCE      shift and go to state 39
+
+    table                          shift and go to state 37
+
+state 13
+
+    (42) insert -> INSERT . into table insert_columns VALUES values
+    (43) insert -> INSERT . into table insert_columns select
+    (44) into -> . INTO
+    (45) into -> . empty
+    (117) empty -> .
+
+    INTO            shift and go to state 41
+    STRING          reduce using rule 117 (empty -> .)
+    DATASOURCE      reduce using rule 117 (empty -> .)
+
+    into                           shift and go to state 40
+    empty                          shift and go to state 42
+
+state 14
+
+    (53) delete -> DELETE . FROM table where
+
+    FROM            shift and go to state 43
+
+
+state 15
+
+    (54) create -> CREATE . TABLE string ( create_columns )
+
+    TABLE           shift and go to state 44
+
+
+state 16
+
+    (68) alter -> ALTER . TABLE string change_column
+
+    TABLE           shift and go to state 45
+
+
+state 17
+
+    (72) drop -> DROP . TABLE string
+
+    TABLE           shift and go to state 46
+
+
+state 18
+
+    (1) expression -> dml END .
+
+    $end            reduce using rule 1 (expression -> dml END .)
+
+
+state 19
+
+    (2) expression -> ddl END .
+
+    $end            reduce using rule 2 (expression -> ddl END .)
+
+
+state 20
+
+    (10) select -> SELECT columns . FROM table join where group_by having order_by limit
+    (11) select -> SELECT columns . into table FROM table join where group_by having order_by limit
+    (73) columns -> columns . COMMA columns
+    (44) into -> . INTO
+    (45) into -> . empty
+    (117) empty -> .
+
+    FROM            shift and go to state 47
+    COMMA           shift and go to state 49
+    INTO            shift and go to state 41
+    STRING          reduce using rule 117 (empty -> .)
+    DATASOURCE      reduce using rule 117 (empty -> .)
+
+    into                           shift and go to state 48
+    empty                          shift and go to state 42
+
+state 21
+
+    (74) columns -> column_as .
+
+    FROM            reduce using rule 74 (columns -> column_as .)
+    COMMA           reduce using rule 74 (columns -> column_as .)
+    INTO            reduce using rule 74 (columns -> column_as .)
+    STRING          reduce using rule 74 (columns -> column_as .)
+    DATASOURCE      reduce using rule 74 (columns -> column_as .)
+    )               reduce using rule 74 (columns -> column_as .)
+
+
+state 22
+
+    (75) columns -> column .
+    (76) column_as -> column . AS item
+    (77) column_as -> column . item
+    (89) item -> . string
+    (90) item -> . NUMBER
+    (91) item -> . *
+    (92) item -> . string . item
+    (99) string -> . STRING
+    (100) string -> . QSTRING
+
+  ! shift/reduce conflict for STRING resolved as shift
+    FROM            reduce using rule 75 (columns -> column .)
+    COMMA           reduce using rule 75 (columns -> column .)
+    INTO            reduce using rule 75 (columns -> column .)
+    DATASOURCE      reduce using rule 75 (columns -> column .)
+    )               reduce using rule 75 (columns -> column .)
+    AS              shift and go to state 50
+    NUMBER          shift and go to state 33
+    *               shift and go to state 34
+    STRING          shift and go to state 35
+    QSTRING         shift and go to state 36
+
+  ! STRING          [ reduce using rule 75 (columns -> column .) ]
+
+    item                           shift and go to state 51
+    string                         shift and go to state 32
+
+state 23
+
+    (81) column -> item .
+
+    AS              reduce using rule 81 (column -> item .)
+    NUMBER          reduce using rule 81 (column -> item .)
+    *               reduce using rule 81 (column -> item .)
+    STRING          reduce using rule 81 (column -> item .)
+    QSTRING         reduce using rule 81 (column -> item .)
+    FROM            reduce using rule 81 (column -> item .)
+    COMMA           reduce using rule 81 (column -> item .)
+    INTO            reduce using rule 81 (column -> item .)
+    DATASOURCE      reduce using rule 81 (column -> item .)
+    )               reduce using rule 81 (column -> item .)
+    COMPARISON      reduce using rule 81 (column -> item .)
+    BETWEEN         reduce using rule 81 (column -> item .)
+    IS              reduce using rule 81 (column -> item .)
+    LIKE            reduce using rule 81 (column -> item .)
+    NOT             reduce using rule 81 (column -> item .)
+    IN              reduce using rule 81 (column -> item .)
+
+
+state 24
+
+    (78) column -> function . ( distinct_item )
+    (79) column -> function . ( item )
+
+    (               shift and go to state 52
+
+
+state 25
+
+    (80) column -> distinct_item .
+
+    AS              reduce using rule 80 (column -> distinct_item .)
+    NUMBER          reduce using rule 80 (column -> distinct_item .)
+    *               reduce using rule 80 (column -> distinct_item .)
+    STRING          reduce using rule 80 (column -> distinct_item .)
+    QSTRING         reduce using rule 80 (column -> distinct_item .)
+    FROM            reduce using rule 80 (column -> distinct_item .)
+    COMMA           reduce using rule 80 (column -> distinct_item .)
+    INTO            reduce using rule 80 (column -> distinct_item .)
+    DATASOURCE      reduce using rule 80 (column -> distinct_item .)
+    )               reduce using rule 80 (column -> distinct_item .)
+    COMPARISON      reduce using rule 80 (column -> distinct_item .)
+    BETWEEN         reduce using rule 80 (column -> distinct_item .)
+    IS              reduce using rule 80 (column -> distinct_item .)
+    LIKE            reduce using rule 80 (column -> distinct_item .)
+    NOT             reduce using rule 80 (column -> distinct_item .)
+    IN              reduce using rule 80 (column -> distinct_item .)
+
+
+state 26
+
+    (84) function -> COUNT .
+
+    (               reduce using rule 84 (function -> COUNT .)
+
+
+state 27
+
+    (85) function -> SUM .
+
+    (               reduce using rule 85 (function -> SUM .)
+
+
+state 28
+
+    (86) function -> AVG .
+
+    (               reduce using rule 86 (function -> AVG .)
+
+
+state 29
+
+    (87) function -> MIN .
+
+    (               reduce using rule 87 (function -> MIN .)
+
+
+state 30
+
+    (88) function -> MAX .
+
+    (               reduce using rule 88 (function -> MAX .)
+
+
+state 31
+
+    (82) distinct_item -> DISTINCT . item
+    (83) distinct_item -> DISTINCT . ( item )
+    (89) item -> . string
+    (90) item -> . NUMBER
+    (91) item -> . *
+    (92) item -> . string . item
+    (99) string -> . STRING
+    (100) string -> . QSTRING
+
+    (               shift and go to state 54
+    NUMBER          shift and go to state 33
+    *               shift and go to state 34
+    STRING          shift and go to state 35
+    QSTRING         shift and go to state 36
+
+    item                           shift and go to state 53
+    string                         shift and go to state 32
+
+state 32
+
+    (89) item -> string .
+    (92) item -> string . . item
+
+    AS              reduce using rule 89 (item -> string .)
+    NUMBER          reduce using rule 89 (item -> string .)
+    *               reduce using rule 89 (item -> string .)
+    STRING          reduce using rule 89 (item -> string .)
+    QSTRING         reduce using rule 89 (item -> string .)
+    FROM            reduce using rule 89 (item -> string .)
+    COMMA           reduce using rule 89 (item -> string .)
+    INTO            reduce using rule 89 (item -> string .)
+    DATASOURCE      reduce using rule 89 (item -> string .)
+    )               reduce using rule 89 (item -> string .)
+    COMPARISON      reduce using rule 89 (item -> string .)
+    BETWEEN         reduce using rule 89 (item -> string .)
+    IS              reduce using rule 89 (item -> string .)
+    LIKE            reduce using rule 89 (item -> string .)
+    NOT             reduce using rule 89 (item -> string .)
+    IN              reduce using rule 89 (item -> string .)
+    WHERE           reduce using rule 89 (item -> string .)
+    END             reduce using rule 89 (item -> string .)
+    AND             reduce using rule 89 (item -> string .)
+    OR              reduce using rule 89 (item -> string .)
+    GROUP           reduce using rule 89 (item -> string .)
+    HAVING          reduce using rule 89 (item -> string .)
+    ORDER           reduce using rule 89 (item -> string .)
+    LIMIT           reduce using rule 89 (item -> string .)
+    INNER           reduce using rule 89 (item -> string .)
+    LEFT            reduce using rule 89 (item -> string .)
+    RIGHT           reduce using rule 89 (item -> string .)
+    FULL            reduce using rule 89 (item -> string .)
+    JOIN            reduce using rule 89 (item -> string .)
+    .               shift and go to state 55
+
+
+state 33
+
+    (90) item -> NUMBER .
+
+    AS              reduce using rule 90 (item -> NUMBER .)
+    NUMBER          reduce using rule 90 (item -> NUMBER .)
+    *               reduce using rule 90 (item -> NUMBER .)
+    STRING          reduce using rule 90 (item -> NUMBER .)
+    QSTRING         reduce using rule 90 (item -> NUMBER .)
+    FROM            reduce using rule 90 (item -> NUMBER .)
+    COMMA           reduce using rule 90 (item -> NUMBER .)
+    INTO            reduce using rule 90 (item -> NUMBER .)
+    DATASOURCE      reduce using rule 90 (item -> NUMBER .)
+    )               reduce using rule 90 (item -> NUMBER .)
+    COMPARISON      reduce using rule 90 (item -> NUMBER .)
+    BETWEEN         reduce using rule 90 (item -> NUMBER .)
+    IS              reduce using rule 90 (item -> NUMBER .)
+    LIKE            reduce using rule 90 (item -> NUMBER .)
+    NOT             reduce using rule 90 (item -> NUMBER .)
+    IN              reduce using rule 90 (item -> NUMBER .)
+    WHERE           reduce using rule 90 (item -> NUMBER .)
+    END             reduce using rule 90 (item -> NUMBER .)
+    AND             reduce using rule 90 (item -> NUMBER .)
+    OR              reduce using rule 90 (item -> NUMBER .)
+    GROUP           reduce using rule 90 (item -> NUMBER .)
+    HAVING          reduce using rule 90 (item -> NUMBER .)
+    ORDER           reduce using rule 90 (item -> NUMBER .)
+    LIMIT           reduce using rule 90 (item -> NUMBER .)
+    INNER           reduce using rule 90 (item -> NUMBER .)
+    LEFT            reduce using rule 90 (item -> NUMBER .)
+    RIGHT           reduce using rule 90 (item -> NUMBER .)
+    FULL            reduce using rule 90 (item -> NUMBER .)
+    JOIN            reduce using rule 90 (item -> NUMBER .)
+
+
+state 34
+
+    (91) item -> * .
+
+    AS              reduce using rule 91 (item -> * .)
+    NUMBER          reduce using rule 91 (item -> * .)
+    *               reduce using rule 91 (item -> * .)
+    STRING          reduce using rule 91 (item -> * .)
+    QSTRING         reduce using rule 91 (item -> * .)
+    FROM            reduce using rule 91 (item -> * .)
+    COMMA           reduce using rule 91 (item -> * .)
+    INTO            reduce using rule 91 (item -> * .)
+    DATASOURCE      reduce using rule 91 (item -> * .)
+    )               reduce using rule 91 (item -> * .)
+    COMPARISON      reduce using rule 91 (item -> * .)
+    BETWEEN         reduce using rule 91 (item -> * .)
+    IS              reduce using rule 91 (item -> * .)
+    LIKE            reduce using rule 91 (item -> * .)
+    NOT             reduce using rule 91 (item -> * .)
+    IN              reduce using rule 91 (item -> * .)
+    WHERE           reduce using rule 91 (item -> * .)
+    END             reduce using rule 91 (item -> * .)
+    AND             reduce using rule 91 (item -> * .)
+    OR              reduce using rule 91 (item -> * .)
+    GROUP           reduce using rule 91 (item -> * .)
+    HAVING          reduce using rule 91 (item -> * .)
+    ORDER           reduce using rule 91 (item -> * .)
+    LIMIT           reduce using rule 91 (item -> * .)
+    INNER           reduce using rule 91 (item -> * .)
+    LEFT            reduce using rule 91 (item -> * .)
+    RIGHT           reduce using rule 91 (item -> * .)
+    FULL            reduce using rule 91 (item -> * .)
+    JOIN            reduce using rule 91 (item -> * .)
+
+
+state 35
+
+    (99) string -> STRING .
+
+    .               reduce using rule 99 (string -> STRING .)
+    AS              reduce using rule 99 (string -> STRING .)
+    NUMBER          reduce using rule 99 (string -> STRING .)
+    *               reduce using rule 99 (string -> STRING .)
+    STRING          reduce using rule 99 (string -> STRING .)
+    QSTRING         reduce using rule 99 (string -> STRING .)
+    FROM            reduce using rule 99 (string -> STRING .)
+    COMMA           reduce using rule 99 (string -> STRING .)
+    INTO            reduce using rule 99 (string -> STRING .)
+    DATASOURCE      reduce using rule 99 (string -> STRING .)
+    )               reduce using rule 99 (string -> STRING .)
+    COMPARISON      reduce using rule 99 (string -> STRING .)
+    BETWEEN         reduce using rule 99 (string -> STRING .)
+    IS              reduce using rule 99 (string -> STRING .)
+    LIKE            reduce using rule 99 (string -> STRING .)
+    NOT             reduce using rule 99 (string -> STRING .)
+    IN              reduce using rule 99 (string -> STRING .)
+    (               reduce using rule 99 (string -> STRING .)
+    ADD             reduce using rule 99 (string -> STRING .)
+    DROP            reduce using rule 99 (string -> STRING .)
+    ALTER           reduce using rule 99 (string -> STRING .)
+    END             reduce using rule 99 (string -> STRING .)
+    WHERE           reduce using rule 99 (string -> STRING .)
+    AND             reduce using rule 99 (string -> STRING .)
+    OR              reduce using rule 99 (string -> STRING .)
+    GROUP           reduce using rule 99 (string -> STRING .)
+    HAVING          reduce using rule 99 (string -> STRING .)
+    ORDER           reduce using rule 99 (string -> STRING .)
+    LIMIT           reduce using rule 99 (string -> STRING .)
+    INNER           reduce using rule 99 (string -> STRING .)
+    LEFT            reduce using rule 99 (string -> STRING .)
+    RIGHT           reduce using rule 99 (string -> STRING .)
+    FULL            reduce using rule 99 (string -> STRING .)
+    JOIN            reduce using rule 99 (string -> STRING .)
+    INT             reduce using rule 99 (string -> STRING .)
+    INTEGER         reduce using rule 99 (string -> STRING .)
+    TINYINT         reduce using rule 99 (string -> STRING .)
+    SMALLINT        reduce using rule 99 (string -> STRING .)
+    MEDIUMINT       reduce using rule 99 (string -> STRING .)
+    BIGINT          reduce using rule 99 (string -> STRING .)
+    FLOAT           reduce using rule 99 (string -> STRING .)
+    DOUBLE          reduce using rule 99 (string -> STRING .)
+    DECIMAL         reduce using rule 99 (string -> STRING .)
+    CHAR            reduce using rule 99 (string -> STRING .)
+    VARCHAR         reduce using rule 99 (string -> STRING .)
+    ASC             reduce using rule 99 (string -> STRING .)
+    DESC            reduce using rule 99 (string -> STRING .)
+
+
+state 36
+
+    (100) string -> QSTRING .
+
+    .               reduce using rule 100 (string -> QSTRING .)
+    AS              reduce using rule 100 (string -> QSTRING .)
+    NUMBER          reduce using rule 100 (string -> QSTRING .)
+    *               reduce using rule 100 (string -> QSTRING .)
+    STRING          reduce using rule 100 (string -> QSTRING .)
+    QSTRING         reduce using rule 100 (string -> QSTRING .)
+    FROM            reduce using rule 100 (string -> QSTRING .)
+    COMMA           reduce using rule 100 (string -> QSTRING .)
+    INTO            reduce using rule 100 (string -> QSTRING .)
+    DATASOURCE      reduce using rule 100 (string -> QSTRING .)
+    )               reduce using rule 100 (string -> QSTRING .)
+    COMPARISON      reduce using rule 100 (string -> QSTRING .)
+    BETWEEN         reduce using rule 100 (string -> QSTRING .)
+    IS              reduce using rule 100 (string -> QSTRING .)
+    LIKE            reduce using rule 100 (string -> QSTRING .)
+    NOT             reduce using rule 100 (string -> QSTRING .)
+    IN              reduce using rule 100 (string -> QSTRING .)
+    (               reduce using rule 100 (string -> QSTRING .)
+    ADD             reduce using rule 100 (string -> QSTRING .)
+    DROP            reduce using rule 100 (string -> QSTRING .)
+    ALTER           reduce using rule 100 (string -> QSTRING .)
+    END             reduce using rule 100 (string -> QSTRING .)
+    WHERE           reduce using rule 100 (string -> QSTRING .)
+    AND             reduce using rule 100 (string -> QSTRING .)
+    OR              reduce using rule 100 (string -> QSTRING .)
+    GROUP           reduce using rule 100 (string -> QSTRING .)
+    HAVING          reduce using rule 100 (string -> QSTRING .)
+    ORDER           reduce using rule 100 (string -> QSTRING .)
+    LIMIT           reduce using rule 100 (string -> QSTRING .)
+    INNER           reduce using rule 100 (string -> QSTRING .)
+    LEFT            reduce using rule 100 (string -> QSTRING .)
+    RIGHT           reduce using rule 100 (string -> QSTRING .)
+    FULL            reduce using rule 100 (string -> QSTRING .)
+    JOIN            reduce using rule 100 (string -> QSTRING .)
+    INT             reduce using rule 100 (string -> QSTRING .)
+    INTEGER         reduce using rule 100 (string -> QSTRING .)
+    TINYINT         reduce using rule 100 (string -> QSTRING .)
+    SMALLINT        reduce using rule 100 (string -> QSTRING .)
+    MEDIUMINT       reduce using rule 100 (string -> QSTRING .)
+    BIGINT          reduce using rule 100 (string -> QSTRING .)
+    FLOAT           reduce using rule 100 (string -> QSTRING .)
+    DOUBLE          reduce using rule 100 (string -> QSTRING .)
+    DECIMAL         reduce using rule 100 (string -> QSTRING .)
+    CHAR            reduce using rule 100 (string -> QSTRING .)
+    VARCHAR         reduce using rule 100 (string -> QSTRING .)
+    ASC             reduce using rule 100 (string -> QSTRING .)
+    DESC            reduce using rule 100 (string -> QSTRING .)
+
+
+state 37
+
+    (39) update -> UPDATE table . SET set where
+    (12) table -> table . COMMA table
+
+    SET             shift and go to state 56
+    COMMA           shift and go to state 57
+
+
+state 38
+
+    (13) table -> STRING . AS STRING
+    (14) table -> STRING . STRING
+    (15) table -> STRING .
+
+    AS              shift and go to state 59
+    STRING          shift and go to state 58
+    SET             reduce using rule 15 (table -> STRING .)
+    COMMA           reduce using rule 15 (table -> STRING .)
+    (               reduce using rule 15 (table -> STRING .)
+    VALUES          reduce using rule 15 (table -> STRING .)
+    SELECT          reduce using rule 15 (table -> STRING .)
+    WHERE           reduce using rule 15 (table -> STRING .)
+    END             reduce using rule 15 (table -> STRING .)
+    INNER           reduce using rule 15 (table -> STRING .)
+    LEFT            reduce using rule 15 (table -> STRING .)
+    RIGHT           reduce using rule 15 (table -> STRING .)
+    FULL            reduce using rule 15 (table -> STRING .)
+    JOIN            reduce using rule 15 (table -> STRING .)
+    GROUP           reduce using rule 15 (table -> STRING .)
+    HAVING          reduce using rule 15 (table -> STRING .)
+    ORDER           reduce using rule 15 (table -> STRING .)
+    LIMIT           reduce using rule 15 (table -> STRING .)
+    FROM            reduce using rule 15 (table -> STRING .)
+    ON              reduce using rule 15 (table -> STRING .)
+
+
+state 39
+
+    (16) table -> DATASOURCE .
+
+    SET             reduce using rule 16 (table -> DATASOURCE .)
+    COMMA           reduce using rule 16 (table -> DATASOURCE .)
+    (               reduce using rule 16 (table -> DATASOURCE .)
+    VALUES          reduce using rule 16 (table -> DATASOURCE .)
+    SELECT          reduce using rule 16 (table -> DATASOURCE .)
+    WHERE           reduce using rule 16 (table -> DATASOURCE .)
+    END             reduce using rule 16 (table -> DATASOURCE .)
+    INNER           reduce using rule 16 (table -> DATASOURCE .)
+    LEFT            reduce using rule 16 (table -> DATASOURCE .)
+    RIGHT           reduce using rule 16 (table -> DATASOURCE .)
+    FULL            reduce using rule 16 (table -> DATASOURCE .)
+    JOIN            reduce using rule 16 (table -> DATASOURCE .)
+    GROUP           reduce using rule 16 (table -> DATASOURCE .)
+    HAVING          reduce using rule 16 (table -> DATASOURCE .)
+    ORDER           reduce using rule 16 (table -> DATASOURCE .)
+    LIMIT           reduce using rule 16 (table -> DATASOURCE .)
+    FROM            reduce using rule 16 (table -> DATASOURCE .)
+    ON              reduce using rule 16 (table -> DATASOURCE .)
+
+
+state 40
+
+    (42) insert -> INSERT into . table insert_columns VALUES values
+    (43) insert -> INSERT into . table insert_columns select
+    (12) table -> . table COMMA table
+    (13) table -> . STRING AS STRING
+    (14) table -> . STRING STRING
+    (15) table -> . STRING
+    (16) table -> . DATASOURCE
+
+    STRING          shift and go to state 38
+    DATASOURCE      shift and go to state 39
+
+    table                          shift and go to state 60
+
+state 41
+
+    (44) into -> INTO .
+
+    STRING          reduce using rule 44 (into -> INTO .)
+    DATASOURCE      reduce using rule 44 (into -> INTO .)
+
+
+state 42
+
+    (45) into -> empty .
+
+    STRING          reduce using rule 45 (into -> empty .)
+    DATASOURCE      reduce using rule 45 (into -> empty .)
+
+
+state 43
+
+    (53) delete -> DELETE FROM . table where
+    (12) table -> . table COMMA table
+    (13) table -> . STRING AS STRING
+    (14) table -> . STRING STRING
+    (15) table -> . STRING
+    (16) table -> . DATASOURCE
+
+    STRING          shift and go to state 38
+    DATASOURCE      shift and go to state 39
+
+    table                          shift and go to state 61
+
+state 44
+
+    (54) create -> CREATE TABLE . string ( create_columns )
+    (99) string -> . STRING
+    (100) string -> . QSTRING
+
+    STRING          shift and go to state 35
+    QSTRING         shift and go to state 36
+
+    string                         shift and go to state 62
+
+state 45
+
+    (68) alter -> ALTER TABLE . string change_column
+    (99) string -> . STRING
+    (100) string -> . QSTRING
+
+    STRING          shift and go to state 35
+    QSTRING         shift and go to state 36
+
+    string                         shift and go to state 63
+
+state 46
+
+    (72) drop -> DROP TABLE . string
+    (99) string -> . STRING
+    (100) string -> . QSTRING
+
+    STRING          shift and go to state 35
+    QSTRING         shift and go to state 36
+
+    string                         shift and go to state 64
+
+state 47
+
+    (10) select -> SELECT columns FROM . table join where group_by having order_by limit
+    (12) table -> . table COMMA table
+    (13) table -> . STRING AS STRING
+    (14) table -> . STRING STRING
+    (15) table -> . STRING
+    (16) table -> . DATASOURCE
+
+    STRING          shift and go to state 38
+    DATASOURCE      shift and go to state 39
+
+    table                          shift and go to state 65
+
+state 48
+
+    (11) select -> SELECT columns into . table FROM table join where group_by having order_by limit
+    (12) table -> . table COMMA table
+    (13) table -> . STRING AS STRING
+    (14) table -> . STRING STRING
+    (15) table -> . STRING
+    (16) table -> . DATASOURCE
+
+    STRING          shift and go to state 38
+    DATASOURCE      shift and go to state 39
+
+    table                          shift and go to state 66
+
+state 49
+
+    (73) columns -> columns COMMA . columns
+    (73) columns -> . columns COMMA columns
+    (74) columns -> . column_as
+    (75) columns -> . column
+    (76) column_as -> . column AS item
+    (77) column_as -> . column item
+    (78) column -> . function ( distinct_item )
+    (79) column -> . function ( item )
+    (80) column -> . distinct_item
+    (81) column -> . item
+    (84) function -> . COUNT
+    (85) function -> . SUM
+    (86) function -> . AVG
+    (87) function -> . MIN
+    (88) function -> . MAX
+    (82) distinct_item -> . DISTINCT item
+    (83) distinct_item -> . DISTINCT ( item )
+    (89) item -> . string
+    (90) item -> . NUMBER
+    (91) item -> . *
+    (92) item -> . string . item
+    (99) string -> . STRING
+    (100) string -> . QSTRING
+
+    COUNT           shift and go to state 26
+    SUM             shift and go to state 27
+    AVG             shift and go to state 28
+    MIN             shift and go to state 29
+    MAX             shift and go to state 30
+    DISTINCT        shift and go to state 31
+    NUMBER          shift and go to state 33
+    *               shift and go to state 34
+    STRING          shift and go to state 35
+    QSTRING         shift and go to state 36
+
+    columns                        shift and go to state 67
+    column_as                      shift and go to state 21
+    column                         shift and go to state 22
+    item                           shift and go to state 23
+    function                       shift and go to state 24
+    distinct_item                  shift and go to state 25
+    string                         shift and go to state 32
+
+state 50
+
+    (76) column_as -> column AS . item
+    (89) item -> . string
+    (90) item -> . NUMBER
+    (91) item -> . *
+    (92) item -> . string . item
+    (99) string -> . STRING
+    (100) string -> . QSTRING
+
+    NUMBER          shift and go to state 33
+    *               shift and go to state 34
+    STRING          shift and go to state 35
+    QSTRING         shift and go to state 36
+
+    item                           shift and go to state 68
+    string                         shift and go to state 32
+
+state 51
+
+    (77) column_as -> column item .
+
+    FROM            reduce using rule 77 (column_as -> column item .)
+    COMMA           reduce using rule 77 (column_as -> column item .)
+    INTO            reduce using rule 77 (column_as -> column item .)
+    STRING          reduce using rule 77 (column_as -> column item .)
+    DATASOURCE      reduce using rule 77 (column_as -> column item .)
+    )               reduce using rule 77 (column_as -> column item .)
+
+
+state 52
+
+    (78) column -> function ( . distinct_item )
+    (79) column -> function ( . item )
+    (82) distinct_item -> . DISTINCT item
+    (83) distinct_item -> . DISTINCT ( item )
+    (89) item -> . string
+    (90) item -> . NUMBER
+    (91) item -> . *
+    (92) item -> . string . item
+    (99) string -> . STRING
+    (100) string -> . QSTRING
+
+    DISTINCT        shift and go to state 31
+    NUMBER          shift and go to state 33
+    *               shift and go to state 34
+    STRING          shift and go to state 35
+    QSTRING         shift and go to state 36
+
+    distinct_item                  shift and go to state 69
+    item                           shift and go to state 70
+    string                         shift and go to state 32
+
+state 53
+
+    (82) distinct_item -> DISTINCT item .
+
+    AS              reduce using rule 82 (distinct_item -> DISTINCT item .)
+    NUMBER          reduce using rule 82 (distinct_item -> DISTINCT item .)
+    *               reduce using rule 82 (distinct_item -> DISTINCT item .)
+    STRING          reduce using rule 82 (distinct_item -> DISTINCT item .)
+    QSTRING         reduce using rule 82 (distinct_item -> DISTINCT item .)
+    FROM            reduce using rule 82 (distinct_item -> DISTINCT item .)
+    COMMA           reduce using rule 82 (distinct_item -> DISTINCT item .)
+    INTO            reduce using rule 82 (distinct_item -> DISTINCT item .)
+    DATASOURCE      reduce using rule 82 (distinct_item -> DISTINCT item .)
+    )               reduce using rule 82 (distinct_item -> DISTINCT item .)
+    COMPARISON      reduce using rule 82 (distinct_item -> DISTINCT item .)
+    BETWEEN         reduce using rule 82 (distinct_item -> DISTINCT item .)
+    IS              reduce using rule 82 (distinct_item -> DISTINCT item .)
+    LIKE            reduce using rule 82 (distinct_item -> DISTINCT item .)
+    NOT             reduce using rule 82 (distinct_item -> DISTINCT item .)
+    IN              reduce using rule 82 (distinct_item -> DISTINCT item .)
+
+
+state 54
+
+    (83) distinct_item -> DISTINCT ( . item )
+    (89) item -> . string
+    (90) item -> . NUMBER
+    (91) item -> . *
+    (92) item -> . string . item
+    (99) string -> . STRING
+    (100) string -> . QSTRING
+
+    NUMBER          shift and go to state 33
+    *               shift and go to state 34
+    STRING          shift and go to state 35
+    QSTRING         shift and go to state 36
+
+    item                           shift and go to state 71
+    string                         shift and go to state 32
+
+state 55
+
+    (92) item -> string . . item
+    (89) item -> . string
+    (90) item -> . NUMBER
+    (91) item -> . *
+    (92) item -> . string . item
+    (99) string -> . STRING
+    (100) string -> . QSTRING
+
+    NUMBER          shift and go to state 33
+    *               shift and go to state 34
+    STRING          shift and go to state 35
+    QSTRING         shift and go to state 36
+
+    string                         shift and go to state 32
+    item                           shift and go to state 72
+
+state 56
+
+    (39) update -> UPDATE table SET . set where
+    (40) set -> . set COMMA set
+    (41) set -> . item COMPARISON item
+    (89) item -> . string
+    (90) item -> . NUMBER
+    (91) item -> . *
+    (92) item -> . string . item
+    (99) string -> . STRING
+    (100) string -> . QSTRING
+
+    NUMBER          shift and go to state 33
+    *               shift and go to state 34
+    STRING          shift and go to state 35
+    QSTRING         shift and go to state 36
+
+    set                            shift and go to state 73
+    item                           shift and go to state 74
+    string                         shift and go to state 32
+
+state 57
+
+    (12) table -> table COMMA . table
+    (12) table -> . table COMMA table
+    (13) table -> . STRING AS STRING
+    (14) table -> . STRING STRING
+    (15) table -> . STRING
+    (16) table -> . DATASOURCE
+
+    STRING          shift and go to state 38
+    DATASOURCE      shift and go to state 39
+
+    table                          shift and go to state 75
+
+state 58
+
+    (14) table -> STRING STRING .
+
+    SET             reduce using rule 14 (table -> STRING STRING .)
+    COMMA           reduce using rule 14 (table -> STRING STRING .)
+    (               reduce using rule 14 (table -> STRING STRING .)
+    VALUES          reduce using rule 14 (table -> STRING STRING .)
+    SELECT          reduce using rule 14 (table -> STRING STRING .)
+    WHERE           reduce using rule 14 (table -> STRING STRING .)
+    END             reduce using rule 14 (table -> STRING STRING .)
+    INNER           reduce using rule 14 (table -> STRING STRING .)
+    LEFT            reduce using rule 14 (table -> STRING STRING .)
+    RIGHT           reduce using rule 14 (table -> STRING STRING .)
+    FULL            reduce using rule 14 (table -> STRING STRING .)
+    JOIN            reduce using rule 14 (table -> STRING STRING .)
+    GROUP           reduce using rule 14 (table -> STRING STRING .)
+    HAVING          reduce using rule 14 (table -> STRING STRING .)
+    ORDER           reduce using rule 14 (table -> STRING STRING .)
+    LIMIT           reduce using rule 14 (table -> STRING STRING .)
+    FROM            reduce using rule 14 (table -> STRING STRING .)
+    ON              reduce using rule 14 (table -> STRING STRING .)
+
+
+state 59
+
+    (13) table -> STRING AS . STRING
+
+    STRING          shift and go to state 76
+
+
+state 60
+
+    (42) insert -> INSERT into table . insert_columns VALUES values
+    (43) insert -> INSERT into table . insert_columns select
+    (12) table -> table . COMMA table
+    (46) insert_columns -> . ( columns )
+    (47) insert_columns -> . empty
+    (117) empty -> .
+
+    COMMA           shift and go to state 57
+    (               shift and go to state 78
+    VALUES          reduce using rule 117 (empty -> .)
+    SELECT          reduce using rule 117 (empty -> .)
+
+    insert_columns                 shift and go to state 77
+    empty                          shift and go to state 79
+
+state 61
+
+    (53) delete -> DELETE FROM table . where
+    (12) table -> table . COMMA table
+    (24) where -> . WHERE conditions
+    (25) where -> . empty
+    (117) empty -> .
+
+    COMMA           shift and go to state 57
+    WHERE           shift and go to state 81
+    END             reduce using rule 117 (empty -> .)
+
+    where                          shift and go to state 80
+    empty                          shift and go to state 82
+
+state 62
+
+    (54) create -> CREATE TABLE string . ( create_columns )
+
+    (               shift and go to state 83
+
+
+state 63
+
+    (68) alter -> ALTER TABLE string . change_column
+    (69) change_column -> . ADD string datatype
+    (70) change_column -> . DROP COLUMN string
+    (71) change_column -> . ALTER COLUMN string datatype
+
+    ADD             shift and go to state 86
+    DROP            shift and go to state 87
+    ALTER           shift and go to state 84
+
+    change_column                  shift and go to state 85
+
+state 64
+
+    (72) drop -> DROP TABLE string .
+
+    END             reduce using rule 72 (drop -> DROP TABLE string .)
+
+
+state 65
+
+    (10) select -> SELECT columns FROM table . join where group_by having order_by limit
+    (12) table -> table . COMMA table
+    (17) join -> . INNER JOIN table on join
+    (18) join -> . LEFT JOIN table on join
+    (19) join -> . RIGHT JOIN table on join
+    (20) join -> . FULL JOIN table on join
+    (21) join -> . JOIN table on join
+    (22) join -> . empty
+    (117) empty -> .
+
+    COMMA           shift and go to state 57
+    INNER           shift and go to state 89
+    LEFT            shift and go to state 91
+    RIGHT           shift and go to state 92
+    FULL            shift and go to state 93
+    JOIN            shift and go to state 90
+    WHERE           reduce using rule 117 (empty -> .)
+    GROUP           reduce using rule 117 (empty -> .)
+    HAVING          reduce using rule 117 (empty -> .)
+    ORDER           reduce using rule 117 (empty -> .)
+    LIMIT           reduce using rule 117 (empty -> .)
+    END             reduce using rule 117 (empty -> .)
+
+    join                           shift and go to state 88
+    empty                          shift and go to state 94
+
+state 66
+
+    (11) select -> SELECT columns into table . FROM table join where group_by having order_by limit
+    (12) table -> table . COMMA table
+
+    FROM            shift and go to state 95
+    COMMA           shift and go to state 57
+
+
+state 67
+
+    (73) columns -> columns COMMA columns .
+    (73) columns -> columns . COMMA columns
+
+  ! shift/reduce conflict for COMMA resolved as shift
+    FROM            reduce using rule 73 (columns -> columns COMMA columns .)
+    INTO            reduce using rule 73 (columns -> columns COMMA columns .)
+    STRING          reduce using rule 73 (columns -> columns COMMA columns .)
+    DATASOURCE      reduce using rule 73 (columns -> columns COMMA columns .)
+    )               reduce using rule 73 (columns -> columns COMMA columns .)
+    COMMA           shift and go to state 49
+
+  ! COMMA           [ reduce using rule 73 (columns -> columns COMMA columns .) ]
+
+
+state 68
+
+    (76) column_as -> column AS item .
+
+    FROM            reduce using rule 76 (column_as -> column AS item .)
+    COMMA           reduce using rule 76 (column_as -> column AS item .)
+    INTO            reduce using rule 76 (column_as -> column AS item .)
+    STRING          reduce using rule 76 (column_as -> column AS item .)
+    DATASOURCE      reduce using rule 76 (column_as -> column AS item .)
+    )               reduce using rule 76 (column_as -> column AS item .)
+
+
+state 69
+
+    (78) column -> function ( distinct_item . )
+
+    )               shift and go to state 96
+
+
+state 70
+
+    (79) column -> function ( item . )
+
+    )               shift and go to state 97
+
+
+state 71
+
+    (83) distinct_item -> DISTINCT ( item . )
+
+    )               shift and go to state 98
+
+
+state 72
+
+    (92) item -> string . item .
+
+    AS              reduce using rule 92 (item -> string . item .)
+    NUMBER          reduce using rule 92 (item -> string . item .)
+    *               reduce using rule 92 (item -> string . item .)
+    STRING          reduce using rule 92 (item -> string . item .)
+    QSTRING         reduce using rule 92 (item -> string . item .)
+    FROM            reduce using rule 92 (item -> string . item .)
+    COMMA           reduce using rule 92 (item -> string . item .)
+    INTO            reduce using rule 92 (item -> string . item .)
+    DATASOURCE      reduce using rule 92 (item -> string . item .)
+    )               reduce using rule 92 (item -> string . item .)
+    COMPARISON      reduce using rule 92 (item -> string . item .)
+    BETWEEN         reduce using rule 92 (item -> string . item .)
+    IS              reduce using rule 92 (item -> string . item .)
+    LIKE            reduce using rule 92 (item -> string . item .)
+    NOT             reduce using rule 92 (item -> string . item .)
+    IN              reduce using rule 92 (item -> string . item .)
+    WHERE           reduce using rule 92 (item -> string . item .)
+    END             reduce using rule 92 (item -> string . item .)
+    AND             reduce using rule 92 (item -> string . item .)
+    OR              reduce using rule 92 (item -> string . item .)
+    GROUP           reduce using rule 92 (item -> string . item .)
+    HAVING          reduce using rule 92 (item -> string . item .)
+    ORDER           reduce using rule 92 (item -> string . item .)
+    LIMIT           reduce using rule 92 (item -> string . item .)
+    INNER           reduce using rule 92 (item -> string . item .)
+    LEFT            reduce using rule 92 (item -> string . item .)
+    RIGHT           reduce using rule 92 (item -> string . item .)
+    FULL            reduce using rule 92 (item -> string . item .)
+    JOIN            reduce using rule 92 (item -> string . item .)
+
+
+state 73
+
+    (39) update -> UPDATE table SET set . where
+    (40) set -> set . COMMA set
+    (24) where -> . WHERE conditions
+    (25) where -> . empty
+    (117) empty -> .
+
+    COMMA           shift and go to state 100
+    WHERE           shift and go to state 81
+    END             reduce using rule 117 (empty -> .)
+
+    where                          shift and go to state 99
+    empty                          shift and go to state 82
+
+state 74
+
+    (41) set -> item . COMPARISON item
+
+    COMPARISON      shift and go to state 101
+
+
+state 75
+
+    (12) table -> table COMMA table .
+    (12) table -> table . COMMA table
+
+  ! shift/reduce conflict for COMMA resolved as shift
+    SET             reduce using rule 12 (table -> table COMMA table .)
+    (               reduce using rule 12 (table -> table COMMA table .)
+    VALUES          reduce using rule 12 (table -> table COMMA table .)
+    SELECT          reduce using rule 12 (table -> table COMMA table .)
+    WHERE           reduce using rule 12 (table -> table COMMA table .)
+    END             reduce using rule 12 (table -> table COMMA table .)
+    INNER           reduce using rule 12 (table -> table COMMA table .)
+    LEFT            reduce using rule 12 (table -> table COMMA table .)
+    RIGHT           reduce using rule 12 (table -> table COMMA table .)
+    FULL            reduce using rule 12 (table -> table COMMA table .)
+    JOIN            reduce using rule 12 (table -> table COMMA table .)
+    GROUP           reduce using rule 12 (table -> table COMMA table .)
+    HAVING          reduce using rule 12 (table -> table COMMA table .)
+    ORDER           reduce using rule 12 (table -> table COMMA table .)
+    LIMIT           reduce using rule 12 (table -> table COMMA table .)
+    FROM            reduce using rule 12 (table -> table COMMA table .)
+    ON              reduce using rule 12 (table -> table COMMA table .)
+    COMMA           shift and go to state 57
+
+  ! COMMA           [ reduce using rule 12 (table -> table COMMA table .) ]
+
+
+state 76
+
+    (13) table -> STRING AS STRING .
+
+    SET             reduce using rule 13 (table -> STRING AS STRING .)
+    COMMA           reduce using rule 13 (table -> STRING AS STRING .)
+    (               reduce using rule 13 (table -> STRING AS STRING .)
+    VALUES          reduce using rule 13 (table -> STRING AS STRING .)
+    SELECT          reduce using rule 13 (table -> STRING AS STRING .)
+    WHERE           reduce using rule 13 (table -> STRING AS STRING .)
+    END             reduce using rule 13 (table -> STRING AS STRING .)
+    INNER           reduce using rule 13 (table -> STRING AS STRING .)
+    LEFT            reduce using rule 13 (table -> STRING AS STRING .)
+    RIGHT           reduce using rule 13 (table -> STRING AS STRING .)
+    FULL            reduce using rule 13 (table -> STRING AS STRING .)
+    JOIN            reduce using rule 13 (table -> STRING AS STRING .)
+    GROUP           reduce using rule 13 (table -> STRING AS STRING .)
+    HAVING          reduce using rule 13 (table -> STRING AS STRING .)
+    ORDER           reduce using rule 13 (table -> STRING AS STRING .)
+    LIMIT           reduce using rule 13 (table -> STRING AS STRING .)
+    FROM            reduce using rule 13 (table -> STRING AS STRING .)
+    ON              reduce using rule 13 (table -> STRING AS STRING .)
+
+
+state 77
+
+    (42) insert -> INSERT into table insert_columns . VALUES values
+    (43) insert -> INSERT into table insert_columns . select
+    (10) select -> . SELECT columns FROM table join where group_by having order_by limit
+    (11) select -> . SELECT columns into table FROM table join where group_by having order_by limit
+
+    VALUES          shift and go to state 102
+    SELECT          shift and go to state 11
+
+    select                         shift and go to state 103
+
+state 78
+
+    (46) insert_columns -> ( . columns )
+    (73) columns -> . columns COMMA columns
+    (74) columns -> . column_as
+    (75) columns -> . column
+    (76) column_as -> . column AS item
+    (77) column_as -> . column item
+    (78) column -> . function ( distinct_item )
+    (79) column -> . function ( item )
+    (80) column -> . distinct_item
+    (81) column -> . item
+    (84) function -> . COUNT
+    (85) function -> . SUM
+    (86) function -> . AVG
+    (87) function -> . MIN
+    (88) function -> . MAX
+    (82) distinct_item -> . DISTINCT item
+    (83) distinct_item -> . DISTINCT ( item )
+    (89) item -> . string
+    (90) item -> . NUMBER
+    (91) item -> . *
+    (92) item -> . string . item
+    (99) string -> . STRING
+    (100) string -> . QSTRING
+
+    COUNT           shift and go to state 26
+    SUM             shift and go to state 27
+    AVG             shift and go to state 28
+    MIN             shift and go to state 29
+    MAX             shift and go to state 30
+    DISTINCT        shift and go to state 31
+    NUMBER          shift and go to state 33
+    *               shift and go to state 34
+    STRING          shift and go to state 35
+    QSTRING         shift and go to state 36
+
+    columns                        shift and go to state 104
+    column_as                      shift and go to state 21
+    column                         shift and go to state 22
+    item                           shift and go to state 23
+    function                       shift and go to state 24
+    distinct_item                  shift and go to state 25
+    string                         shift and go to state 32
+
+state 79
+
+    (47) insert_columns -> empty .
+
+    VALUES          reduce using rule 47 (insert_columns -> empty .)
+    SELECT          reduce using rule 47 (insert_columns -> empty .)
+
+
+state 80
+
+    (53) delete -> DELETE FROM table where .
+
+    END             reduce using rule 53 (delete -> DELETE FROM table where .)
+
+
+state 81
+
+    (24) where -> WHERE . conditions
+    (101) conditions -> . conditions AND conditions
+    (102) conditions -> . conditions OR conditions
+    (103) conditions -> . ( conditions )
+    (104) conditions -> . compare
+    (105) compare -> . column COMPARISON item
+    (106) compare -> . column like QSTRING
+    (107) compare -> . column BETWEEN item AND item
+    (108) compare -> . column IS null
+    (109) compare -> . column in lritems
+    (78) column -> . function ( distinct_item )
+    (79) column -> . function ( item )
+    (80) column -> . distinct_item
+    (81) column -> . item
+    (84) function -> . COUNT
+    (85) function -> . SUM
+    (86) function -> . AVG
+    (87) function -> . MIN
+    (88) function -> . MAX
+    (82) distinct_item -> . DISTINCT item
+    (83) distinct_item -> . DISTINCT ( item )
+    (89) item -> . string
+    (90) item -> . NUMBER
+    (91) item -> . *
+    (92) item -> . string . item
+    (99) string -> . STRING
+    (100) string -> . QSTRING
+
+    (               shift and go to state 106
+    COUNT           shift and go to state 26
+    SUM             shift and go to state 27
+    AVG             shift and go to state 28
+    MIN             shift and go to state 29
+    MAX             shift and go to state 30
+    DISTINCT        shift and go to state 31
+    NUMBER          shift and go to state 33
+    *               shift and go to state 34
+    STRING          shift and go to state 35
+    QSTRING         shift and go to state 36
+
+    conditions                     shift and go to state 105
+    compare                        shift and go to state 107
+    column                         shift and go to state 108
+    item                           shift and go to state 23
+    function                       shift and go to state 24
+    distinct_item                  shift and go to state 25
+    string                         shift and go to state 32
+
+state 82
+
+    (25) where -> empty .
+
+    END             reduce using rule 25 (where -> empty .)
+    GROUP           reduce using rule 25 (where -> empty .)
+    HAVING          reduce using rule 25 (where -> empty .)
+    ORDER           reduce using rule 25 (where -> empty .)
+    LIMIT           reduce using rule 25 (where -> empty .)
+
+
+state 83
+
+    (54) create -> CREATE TABLE string ( . create_columns )
+    (55) create_columns -> . create_columns COMMA create_columns
+    (56) create_columns -> . string datatype
+    (99) string -> . STRING
+    (100) string -> . QSTRING
+
+    STRING          shift and go to state 35
+    QSTRING         shift and go to state 36
+
+    string                         shift and go to state 109
+    create_columns                 shift and go to state 110
+
+state 84
+
+    (71) change_column -> ALTER . COLUMN string datatype
+
+    COLUMN          shift and go to state 111
+
+
+state 85
+
+    (68) alter -> ALTER TABLE string change_column .
+
+    END             reduce using rule 68 (alter -> ALTER TABLE string change_column .)
+
+
+state 86
+
+    (69) change_column -> ADD . string datatype
+    (99) string -> . STRING
+    (100) string -> . QSTRING
+
+    STRING          shift and go to state 35
+    QSTRING         shift and go to state 36
+
+    string                         shift and go to state 112
+
+state 87
+
+    (70) change_column -> DROP . COLUMN string
+
+    COLUMN          shift and go to state 113
+
+
+state 88
+
+    (10) select -> SELECT columns FROM table join . where group_by having order_by limit
+    (24) where -> . WHERE conditions
+    (25) where -> . empty
+    (117) empty -> .
+
+    WHERE           shift and go to state 81
+    GROUP           reduce using rule 117 (empty -> .)
+    HAVING          reduce using rule 117 (empty -> .)
+    ORDER           reduce using rule 117 (empty -> .)
+    LIMIT           reduce using rule 117 (empty -> .)
+    END             reduce using rule 117 (empty -> .)
+
+    where                          shift and go to state 114
+    empty                          shift and go to state 82
+
+state 89
+
+    (17) join -> INNER . JOIN table on join
+
+    JOIN            shift and go to state 115
+
+
+state 90
+
+    (21) join -> JOIN . table on join
+    (12) table -> . table COMMA table
+    (13) table -> . STRING AS STRING
+    (14) table -> . STRING STRING
+    (15) table -> . STRING
+    (16) table -> . DATASOURCE
+
+    STRING          shift and go to state 38
+    DATASOURCE      shift and go to state 39
+
+    table                          shift and go to state 116
+
+state 91
+
+    (18) join -> LEFT . JOIN table on join
+
+    JOIN            shift and go to state 117
+
+
+state 92
+
+    (19) join -> RIGHT . JOIN table on join
+
+    JOIN            shift and go to state 118
+
+
+state 93
+
+    (20) join -> FULL . JOIN table on join
+
+    JOIN            shift and go to state 119
+
+
+state 94
+
+    (22) join -> empty .
+
+    WHERE           reduce using rule 22 (join -> empty .)
+    GROUP           reduce using rule 22 (join -> empty .)
+    HAVING          reduce using rule 22 (join -> empty .)
+    ORDER           reduce using rule 22 (join -> empty .)
+    LIMIT           reduce using rule 22 (join -> empty .)
+    END             reduce using rule 22 (join -> empty .)
+
+
+state 95
+
+    (11) select -> SELECT columns into table FROM . table join where group_by having order_by limit
+    (12) table -> . table COMMA table
+    (13) table -> . STRING AS STRING
+    (14) table -> . STRING STRING
+    (15) table -> . STRING
+    (16) table -> . DATASOURCE
+
+    STRING          shift and go to state 38
+    DATASOURCE      shift and go to state 39
+
+    table                          shift and go to state 120
+
+state 96
+
+    (78) column -> function ( distinct_item ) .
+
+    AS              reduce using rule 78 (column -> function ( distinct_item ) .)
+    NUMBER          reduce using rule 78 (column -> function ( distinct_item ) .)
+    *               reduce using rule 78 (column -> function ( distinct_item ) .)
+    STRING          reduce using rule 78 (column -> function ( distinct_item ) .)
+    QSTRING         reduce using rule 78 (column -> function ( distinct_item ) .)
+    FROM            reduce using rule 78 (column -> function ( distinct_item ) .)
+    COMMA           reduce using rule 78 (column -> function ( distinct_item ) .)
+    INTO            reduce using rule 78 (column -> function ( distinct_item ) .)
+    DATASOURCE      reduce using rule 78 (column -> function ( distinct_item ) .)
+    )               reduce using rule 78 (column -> function ( distinct_item ) .)
+    COMPARISON      reduce using rule 78 (column -> function ( distinct_item ) .)
+    BETWEEN         reduce using rule 78 (column -> function ( distinct_item ) .)
+    IS              reduce using rule 78 (column -> function ( distinct_item ) .)
+    LIKE            reduce using rule 78 (column -> function ( distinct_item ) .)
+    NOT             reduce using rule 78 (column -> function ( distinct_item ) .)
+    IN              reduce using rule 78 (column -> function ( distinct_item ) .)
+
+
+state 97
+
+    (79) column -> function ( item ) .
+
+    AS              reduce using rule 79 (column -> function ( item ) .)
+    NUMBER          reduce using rule 79 (column -> function ( item ) .)
+    *               reduce using rule 79 (column -> function ( item ) .)
+    STRING          reduce using rule 79 (column -> function ( item ) .)
+    QSTRING         reduce using rule 79 (column -> function ( item ) .)
+    FROM            reduce using rule 79 (column -> function ( item ) .)
+    COMMA           reduce using rule 79 (column -> function ( item ) .)
+    INTO            reduce using rule 79 (column -> function ( item ) .)
+    DATASOURCE      reduce using rule 79 (column -> function ( item ) .)
+    )               reduce using rule 79 (column -> function ( item ) .)
+    COMPARISON      reduce using rule 79 (column -> function ( item ) .)
+    BETWEEN         reduce using rule 79 (column -> function ( item ) .)
+    IS              reduce using rule 79 (column -> function ( item ) .)
+    LIKE            reduce using rule 79 (column -> function ( item ) .)
+    NOT             reduce using rule 79 (column -> function ( item ) .)
+    IN              reduce using rule 79 (column -> function ( item ) .)
+
+
+state 98
+
+    (83) distinct_item -> DISTINCT ( item ) .
+
+    AS              reduce using rule 83 (distinct_item -> DISTINCT ( item ) .)
+    NUMBER          reduce using rule 83 (distinct_item -> DISTINCT ( item ) .)
+    *               reduce using rule 83 (distinct_item -> DISTINCT ( item ) .)
+    STRING          reduce using rule 83 (distinct_item -> DISTINCT ( item ) .)
+    QSTRING         reduce using rule 83 (distinct_item -> DISTINCT ( item ) .)
+    FROM            reduce using rule 83 (distinct_item -> DISTINCT ( item ) .)
+    COMMA           reduce using rule 83 (distinct_item -> DISTINCT ( item ) .)
+    INTO            reduce using rule 83 (distinct_item -> DISTINCT ( item ) .)
+    DATASOURCE      reduce using rule 83 (distinct_item -> DISTINCT ( item ) .)
+    )               reduce using rule 83 (distinct_item -> DISTINCT ( item ) .)
+    COMPARISON      reduce using rule 83 (distinct_item -> DISTINCT ( item ) .)
+    BETWEEN         reduce using rule 83 (distinct_item -> DISTINCT ( item ) .)
+    IS              reduce using rule 83 (distinct_item -> DISTINCT ( item ) .)
+    LIKE            reduce using rule 83 (distinct_item -> DISTINCT ( item ) .)
+    NOT             reduce using rule 83 (distinct_item -> DISTINCT ( item ) .)
+    IN              reduce using rule 83 (distinct_item -> DISTINCT ( item ) .)
+
+
+state 99
+
+    (39) update -> UPDATE table SET set where .
+
+    END             reduce using rule 39 (update -> UPDATE table SET set where .)
+
+
+state 100
+
+    (40) set -> set COMMA . set
+    (40) set -> . set COMMA set
+    (41) set -> . item COMPARISON item
+    (89) item -> . string
+    (90) item -> . NUMBER
+    (91) item -> . *
+    (92) item -> . string . item
+    (99) string -> . STRING
+    (100) string -> . QSTRING
+
+    NUMBER          shift and go to state 33
+    *               shift and go to state 34
+    STRING          shift and go to state 35
+    QSTRING         shift and go to state 36
+
+    set                            shift and go to state 121
+    item                           shift and go to state 74
+    string                         shift and go to state 32
+
+state 101
+
+    (41) set -> item COMPARISON . item
+    (89) item -> . string
+    (90) item -> . NUMBER
+    (91) item -> . *
+    (92) item -> . string . item
+    (99) string -> . STRING
+    (100) string -> . QSTRING
+
+    NUMBER          shift and go to state 33
+    *               shift and go to state 34
+    STRING          shift and go to state 35
+    QSTRING         shift and go to state 36
+
+    item                           shift and go to state 122
+    string                         shift and go to state 32
+
+state 102
+
+    (42) insert -> INSERT into table insert_columns VALUES . values
+    (51) values -> . values COMMA values
+    (52) values -> . ( value )
+
+    (               shift and go to state 124
+
+    values                         shift and go to state 123
+
+state 103
+
+    (43) insert -> INSERT into table insert_columns select .
+
+    END             reduce using rule 43 (insert -> INSERT into table insert_columns select .)
+
+
+state 104
+
+    (46) insert_columns -> ( columns . )
+    (73) columns -> columns . COMMA columns
+
+    )               shift and go to state 125
+    COMMA           shift and go to state 49
+
+
+state 105
+
+    (24) where -> WHERE conditions .
+    (101) conditions -> conditions . AND conditions
+    (102) conditions -> conditions . OR conditions
+
+    END             reduce using rule 24 (where -> WHERE conditions .)
+    GROUP           reduce using rule 24 (where -> WHERE conditions .)
+    HAVING          reduce using rule 24 (where -> WHERE conditions .)
+    ORDER           reduce using rule 24 (where -> WHERE conditions .)
+    LIMIT           reduce using rule 24 (where -> WHERE conditions .)
+    AND             shift and go to state 126
+    OR              shift and go to state 127
+
+
+state 106
+
+    (103) conditions -> ( . conditions )
+    (101) conditions -> . conditions AND conditions
+    (102) conditions -> . conditions OR conditions
+    (103) conditions -> . ( conditions )
+    (104) conditions -> . compare
+    (105) compare -> . column COMPARISON item
+    (106) compare -> . column like QSTRING
+    (107) compare -> . column BETWEEN item AND item
+    (108) compare -> . column IS null
+    (109) compare -> . column in lritems
+    (78) column -> . function ( distinct_item )
+    (79) column -> . function ( item )
+    (80) column -> . distinct_item
+    (81) column -> . item
+    (84) function -> . COUNT
+    (85) function -> . SUM
+    (86) function -> . AVG
+    (87) function -> . MIN
+    (88) function -> . MAX
+    (82) distinct_item -> . DISTINCT item
+    (83) distinct_item -> . DISTINCT ( item )
+    (89) item -> . string
+    (90) item -> . NUMBER
+    (91) item -> . *
+    (92) item -> . string . item
+    (99) string -> . STRING
+    (100) string -> . QSTRING
+
+    (               shift and go to state 106
+    COUNT           shift and go to state 26
+    SUM             shift and go to state 27
+    AVG             shift and go to state 28
+    MIN             shift and go to state 29
+    MAX             shift and go to state 30
+    DISTINCT        shift and go to state 31
+    NUMBER          shift and go to state 33
+    *               shift and go to state 34
+    STRING          shift and go to state 35
+    QSTRING         shift and go to state 36
+
+    conditions                     shift and go to state 128
+    compare                        shift and go to state 107
+    column                         shift and go to state 108
+    item                           shift and go to state 23
+    function                       shift and go to state 24
+    distinct_item                  shift and go to state 25
+    string                         shift and go to state 32
+
+state 107
+
+    (104) conditions -> compare .
+
+    AND             reduce using rule 104 (conditions -> compare .)
+    OR              reduce using rule 104 (conditions -> compare .)
+    END             reduce using rule 104 (conditions -> compare .)
+    GROUP           reduce using rule 104 (conditions -> compare .)
+    HAVING          reduce using rule 104 (conditions -> compare .)
+    ORDER           reduce using rule 104 (conditions -> compare .)
+    LIMIT           reduce using rule 104 (conditions -> compare .)
+    )               reduce using rule 104 (conditions -> compare .)
+
+
+state 108
+
+    (105) compare -> column . COMPARISON item
+    (106) compare -> column . like QSTRING
+    (107) compare -> column . BETWEEN item AND item
+    (108) compare -> column . IS null
+    (109) compare -> column . in lritems
+    (111) like -> . LIKE
+    (112) like -> . NOT LIKE
+    (113) in -> . IN
+    (114) in -> . NOT IN
+
+    COMPARISON      shift and go to state 129
+    BETWEEN         shift and go to state 131
+    IS              shift and go to state 132
+    LIKE            shift and go to state 134
+    NOT             shift and go to state 135
+    IN              shift and go to state 136
+
+    like                           shift and go to state 130
+    in                             shift and go to state 133
+
+state 109
+
+    (56) create_columns -> string . datatype
+    (57) datatype -> . INT
+    (58) datatype -> . INTEGER
+    (59) datatype -> . TINYINT
+    (60) datatype -> . SMALLINT
+    (61) datatype -> . MEDIUMINT
+    (62) datatype -> . BIGINT
+    (63) datatype -> . FLOAT
+    (64) datatype -> . DOUBLE
+    (65) datatype -> . DECIMAL
+    (66) datatype -> . CHAR ( NUMBER )
+    (67) datatype -> . VARCHAR ( NUMBER )
+
+    INT             shift and go to state 138
+    INTEGER         shift and go to state 139
+    TINYINT         shift and go to state 140
+    SMALLINT        shift and go to state 141
+    MEDIUMINT       shift and go to state 142
+    BIGINT          shift and go to state 143
+    FLOAT           shift and go to state 144
+    DOUBLE          shift and go to state 145
+    DECIMAL         shift and go to state 146
+    CHAR            shift and go to state 147
+    VARCHAR         shift and go to state 148
+
+    datatype                       shift and go to state 137
+
+state 110
+
+    (54) create -> CREATE TABLE string ( create_columns . )
+    (55) create_columns -> create_columns . COMMA create_columns
+
+    )               shift and go to state 149
+    COMMA           shift and go to state 150
+
+
+state 111
+
+    (71) change_column -> ALTER COLUMN . string datatype
+    (99) string -> . STRING
+    (100) string -> . QSTRING
+
+    STRING          shift and go to state 35
+    QSTRING         shift and go to state 36
+
+    string                         shift and go to state 151
+
+state 112
+
+    (69) change_column -> ADD string . datatype
+    (57) datatype -> . INT
+    (58) datatype -> . INTEGER
+    (59) datatype -> . TINYINT
+    (60) datatype -> . SMALLINT
+    (61) datatype -> . MEDIUMINT
+    (62) datatype -> . BIGINT
+    (63) datatype -> . FLOAT
+    (64) datatype -> . DOUBLE
+    (65) datatype -> . DECIMAL
+    (66) datatype -> . CHAR ( NUMBER )
+    (67) datatype -> . VARCHAR ( NUMBER )
+
+    INT             shift and go to state 138
+    INTEGER         shift and go to state 139
+    TINYINT         shift and go to state 140
+    SMALLINT        shift and go to state 141
+    MEDIUMINT       shift and go to state 142
+    BIGINT          shift and go to state 143
+    FLOAT           shift and go to state 144
+    DOUBLE          shift and go to state 145
+    DECIMAL         shift and go to state 146
+    CHAR            shift and go to state 147
+    VARCHAR         shift and go to state 148
+
+    datatype                       shift and go to state 152
+
+state 113
+
+    (70) change_column -> DROP COLUMN . string
+    (99) string -> . STRING
+    (100) string -> . QSTRING
+
+    STRING          shift and go to state 35
+    QSTRING         shift and go to state 36
+
+    string                         shift and go to state 153
+
+state 114
+
+    (10) select -> SELECT columns FROM table join where . group_by having order_by limit
+    (26) group_by -> . GROUP BY strings
+    (27) group_by -> . empty
+    (117) empty -> .
+
+    GROUP           shift and go to state 155
+    HAVING          reduce using rule 117 (empty -> .)
+    ORDER           reduce using rule 117 (empty -> .)
+    LIMIT           reduce using rule 117 (empty -> .)
+    END             reduce using rule 117 (empty -> .)
+
+    group_by                       shift and go to state 154
+    empty                          shift and go to state 156
+
+state 115
+
+    (17) join -> INNER JOIN . table on join
+    (12) table -> . table COMMA table
+    (13) table -> . STRING AS STRING
+    (14) table -> . STRING STRING
+    (15) table -> . STRING
+    (16) table -> . DATASOURCE
+
+    STRING          shift and go to state 38
+    DATASOURCE      shift and go to state 39
+
+    table                          shift and go to state 157
+
+state 116
+
+    (21) join -> JOIN table . on join
+    (12) table -> table . COMMA table
+    (23) on -> . ON item COMPARISON item
+
+    COMMA           shift and go to state 57
+    ON              shift and go to state 159
+
+    on                             shift and go to state 158
+
+state 117
+
+    (18) join -> LEFT JOIN . table on join
+    (12) table -> . table COMMA table
+    (13) table -> . STRING AS STRING
+    (14) table -> . STRING STRING
+    (15) table -> . STRING
+    (16) table -> . DATASOURCE
+
+    STRING          shift and go to state 38
+    DATASOURCE      shift and go to state 39
+
+    table                          shift and go to state 160
+
+state 118
+
+    (19) join -> RIGHT JOIN . table on join
+    (12) table -> . table COMMA table
+    (13) table -> . STRING AS STRING
+    (14) table -> . STRING STRING
+    (15) table -> . STRING
+    (16) table -> . DATASOURCE
+
+    STRING          shift and go to state 38
+    DATASOURCE      shift and go to state 39
+
+    table                          shift and go to state 161
+
+state 119
+
+    (20) join -> FULL JOIN . table on join
+    (12) table -> . table COMMA table
+    (13) table -> . STRING AS STRING
+    (14) table -> . STRING STRING
+    (15) table -> . STRING
+    (16) table -> . DATASOURCE
+
+    STRING          shift and go to state 38
+    DATASOURCE      shift and go to state 39
+
+    table                          shift and go to state 162
+
+state 120
+
+    (11) select -> SELECT columns into table FROM table . join where group_by having order_by limit
+    (12) table -> table . COMMA table
+    (17) join -> . INNER JOIN table on join
+    (18) join -> . LEFT JOIN table on join
+    (19) join -> . RIGHT JOIN table on join
+    (20) join -> . FULL JOIN table on join
+    (21) join -> . JOIN table on join
+    (22) join -> . empty
+    (117) empty -> .
+
+    COMMA           shift and go to state 57
+    INNER           shift and go to state 89
+    LEFT            shift and go to state 91
+    RIGHT           shift and go to state 92
+    FULL            shift and go to state 93
+    JOIN            shift and go to state 90
+    WHERE           reduce using rule 117 (empty -> .)
+    GROUP           reduce using rule 117 (empty -> .)
+    HAVING          reduce using rule 117 (empty -> .)
+    ORDER           reduce using rule 117 (empty -> .)
+    LIMIT           reduce using rule 117 (empty -> .)
+    END             reduce using rule 117 (empty -> .)
+
+    join                           shift and go to state 163
+    empty                          shift and go to state 94
+
+state 121
+
+    (40) set -> set COMMA set .
+    (40) set -> set . COMMA set
+
+  ! shift/reduce conflict for COMMA resolved as shift
+    WHERE           reduce using rule 40 (set -> set COMMA set .)
+    END             reduce using rule 40 (set -> set COMMA set .)
+    COMMA           shift and go to state 100
+
+  ! COMMA           [ reduce using rule 40 (set -> set COMMA set .) ]
+
+
+state 122
+
+    (41) set -> item COMPARISON item .
+
+    COMMA           reduce using rule 41 (set -> item COMPARISON item .)
+    WHERE           reduce using rule 41 (set -> item COMPARISON item .)
+    END             reduce using rule 41 (set -> item COMPARISON item .)
+
+
+state 123
+
+    (42) insert -> INSERT into table insert_columns VALUES values .
+    (51) values -> values . COMMA values
+
+    END             reduce using rule 42 (insert -> INSERT into table insert_columns VALUES values .)
+    COMMA           shift and go to state 164
+
+
+state 124
+
+    (52) values -> ( . value )
+    (48) value -> . value COMMA value
+    (49) value -> . string
+    (50) value -> . NUMBER
+    (99) string -> . STRING
+    (100) string -> . QSTRING
+
+    NUMBER          shift and go to state 167
+    STRING          shift and go to state 35
+    QSTRING         shift and go to state 36
+
+    value                          shift and go to state 165
+    string                         shift and go to state 166
+
+state 125
+
+    (46) insert_columns -> ( columns ) .
+
+    VALUES          reduce using rule 46 (insert_columns -> ( columns ) .)
+    SELECT          reduce using rule 46 (insert_columns -> ( columns ) .)
+
+
+state 126
+
+    (101) conditions -> conditions AND . conditions
+    (101) conditions -> . conditions AND conditions
+    (102) conditions -> . conditions OR conditions
+    (103) conditions -> . ( conditions )
+    (104) conditions -> . compare
+    (105) compare -> . column COMPARISON item
+    (106) compare -> . column like QSTRING
+    (107) compare -> . column BETWEEN item AND item
+    (108) compare -> . column IS null
+    (109) compare -> . column in lritems
+    (78) column -> . function ( distinct_item )
+    (79) column -> . function ( item )
+    (80) column -> . distinct_item
+    (81) column -> . item
+    (84) function -> . COUNT
+    (85) function -> . SUM
+    (86) function -> . AVG
+    (87) function -> . MIN
+    (88) function -> . MAX
+    (82) distinct_item -> . DISTINCT item
+    (83) distinct_item -> . DISTINCT ( item )
+    (89) item -> . string
+    (90) item -> . NUMBER
+    (91) item -> . *
+    (92) item -> . string . item
+    (99) string -> . STRING
+    (100) string -> . QSTRING
+
+    (               shift and go to state 106
+    COUNT           shift and go to state 26
+    SUM             shift and go to state 27
+    AVG             shift and go to state 28
+    MIN             shift and go to state 29
+    MAX             shift and go to state 30
+    DISTINCT        shift and go to state 31
+    NUMBER          shift and go to state 33
+    *               shift and go to state 34
+    STRING          shift and go to state 35
+    QSTRING         shift and go to state 36
+
+    conditions                     shift and go to state 168
+    compare                        shift and go to state 107
+    column                         shift and go to state 108
+    item                           shift and go to state 23
+    function                       shift and go to state 24
+    distinct_item                  shift and go to state 25
+    string                         shift and go to state 32
+
+state 127
+
+    (102) conditions -> conditions OR . conditions
+    (101) conditions -> . conditions AND conditions
+    (102) conditions -> . conditions OR conditions
+    (103) conditions -> . ( conditions )
+    (104) conditions -> . compare
+    (105) compare -> . column COMPARISON item
+    (106) compare -> . column like QSTRING
+    (107) compare -> . column BETWEEN item AND item
+    (108) compare -> . column IS null
+    (109) compare -> . column in lritems
+    (78) column -> . function ( distinct_item )
+    (79) column -> . function ( item )
+    (80) column -> . distinct_item
+    (81) column -> . item
+    (84) function -> . COUNT
+    (85) function -> . SUM
+    (86) function -> . AVG
+    (87) function -> . MIN
+    (88) function -> . MAX
+    (82) distinct_item -> . DISTINCT item
+    (83) distinct_item -> . DISTINCT ( item )
+    (89) item -> . string
+    (90) item -> . NUMBER
+    (91) item -> . *
+    (92) item -> . string . item
+    (99) string -> . STRING
+    (100) string -> . QSTRING
+
+    (               shift and go to state 106
+    COUNT           shift and go to state 26
+    SUM             shift and go to state 27
+    AVG             shift and go to state 28
+    MIN             shift and go to state 29
+    MAX             shift and go to state 30
+    DISTINCT        shift and go to state 31
+    NUMBER          shift and go to state 33
+    *               shift and go to state 34
+    STRING          shift and go to state 35
+    QSTRING         shift and go to state 36
+
+    conditions                     shift and go to state 169
+    compare                        shift and go to state 107
+    column                         shift and go to state 108
+    item                           shift and go to state 23
+    function                       shift and go to state 24
+    distinct_item                  shift and go to state 25
+    string                         shift and go to state 32
+
+state 128
+
+    (103) conditions -> ( conditions . )
+    (101) conditions -> conditions . AND conditions
+    (102) conditions -> conditions . OR conditions
+
+    )               shift and go to state 170
+    AND             shift and go to state 126
+    OR              shift and go to state 127
+
+
+state 129
+
+    (105) compare -> column COMPARISON . item
+    (89) item -> . string
+    (90) item -> . NUMBER
+    (91) item -> . *
+    (92) item -> . string . item
+    (99) string -> . STRING
+    (100) string -> . QSTRING
+
+    NUMBER          shift and go to state 33
+    *               shift and go to state 34
+    STRING          shift and go to state 35
+    QSTRING         shift and go to state 36
+
+    item                           shift and go to state 171
+    string                         shift and go to state 32
+
+state 130
+
+    (106) compare -> column like . QSTRING
+
+    QSTRING         shift and go to state 172
+
+
+state 131
+
+    (107) compare -> column BETWEEN . item AND item
+    (89) item -> . string
+    (90) item -> . NUMBER
+    (91) item -> . *
+    (92) item -> . string . item
+    (99) string -> . STRING
+    (100) string -> . QSTRING
+
+    NUMBER          shift and go to state 33
+    *               shift and go to state 34
+    STRING          shift and go to state 35
+    QSTRING         shift and go to state 36
+
+    item                           shift and go to state 173
+    string                         shift and go to state 32
+
+state 132
+
+    (108) compare -> column IS . null
+    (115) null -> . NULL
+    (116) null -> . NOT NULL
+
+    NULL            shift and go to state 175
+    NOT             shift and go to state 176
+
+    null                           shift and go to state 174
+
+state 133
+
+    (109) compare -> column in . lritems
+    (110) lritems -> . ( items )
+
+    (               shift and go to state 178
+
+    lritems                        shift and go to state 177
+
+state 134
+
+    (111) like -> LIKE .
+
+    QSTRING         reduce using rule 111 (like -> LIKE .)
+
+
+state 135
+
+    (112) like -> NOT . LIKE
+    (114) in -> NOT . IN
+
+    LIKE            shift and go to state 179
+    IN              shift and go to state 180
+
+
+state 136
+
+    (113) in -> IN .
+
+    (               reduce using rule 113 (in -> IN .)
+
+
+state 137
+
+    (56) create_columns -> string datatype .
+
+    )               reduce using rule 56 (create_columns -> string datatype .)
+    COMMA           reduce using rule 56 (create_columns -> string datatype .)
+
+
+state 138
+
+    (57) datatype -> INT .
+
+    )               reduce using rule 57 (datatype -> INT .)
+    COMMA           reduce using rule 57 (datatype -> INT .)
+    END             reduce using rule 57 (datatype -> INT .)
+
+
+state 139
+
+    (58) datatype -> INTEGER .
+
+    )               reduce using rule 58 (datatype -> INTEGER .)
+    COMMA           reduce using rule 58 (datatype -> INTEGER .)
+    END             reduce using rule 58 (datatype -> INTEGER .)
+
+
+state 140
+
+    (59) datatype -> TINYINT .
+
+    )               reduce using rule 59 (datatype -> TINYINT .)
+    COMMA           reduce using rule 59 (datatype -> TINYINT .)
+    END             reduce using rule 59 (datatype -> TINYINT .)
+
+
+state 141
+
+    (60) datatype -> SMALLINT .
+
+    )               reduce using rule 60 (datatype -> SMALLINT .)
+    COMMA           reduce using rule 60 (datatype -> SMALLINT .)
+    END             reduce using rule 60 (datatype -> SMALLINT .)
+
+
+state 142
+
+    (61) datatype -> MEDIUMINT .
+
+    )               reduce using rule 61 (datatype -> MEDIUMINT .)
+    COMMA           reduce using rule 61 (datatype -> MEDIUMINT .)
+    END             reduce using rule 61 (datatype -> MEDIUMINT .)
+
+
+state 143
+
+    (62) datatype -> BIGINT .
+
+    )               reduce using rule 62 (datatype -> BIGINT .)
+    COMMA           reduce using rule 62 (datatype -> BIGINT .)
+    END             reduce using rule 62 (datatype -> BIGINT .)
+
+
+state 144
+
+    (63) datatype -> FLOAT .
+
+    )               reduce using rule 63 (datatype -> FLOAT .)
+    COMMA           reduce using rule 63 (datatype -> FLOAT .)
+    END             reduce using rule 63 (datatype -> FLOAT .)
+
+
+state 145
+
+    (64) datatype -> DOUBLE .
+
+    )               reduce using rule 64 (datatype -> DOUBLE .)
+    COMMA           reduce using rule 64 (datatype -> DOUBLE .)
+    END             reduce using rule 64 (datatype -> DOUBLE .)
+
+
+state 146
+
+    (65) datatype -> DECIMAL .
+
+    )               reduce using rule 65 (datatype -> DECIMAL .)
+    COMMA           reduce using rule 65 (datatype -> DECIMAL .)
+    END             reduce using rule 65 (datatype -> DECIMAL .)
+
+
+state 147
+
+    (66) datatype -> CHAR . ( NUMBER )
+
+    (               shift and go to state 181
+
+
+state 148
+
+    (67) datatype -> VARCHAR . ( NUMBER )
+
+    (               shift and go to state 182
+
+
+state 149
+
+    (54) create -> CREATE TABLE string ( create_columns ) .
+
+    END             reduce using rule 54 (create -> CREATE TABLE string ( create_columns ) .)
+
+
+state 150
+
+    (55) create_columns -> create_columns COMMA . create_columns
+    (55) create_columns -> . create_columns COMMA create_columns
+    (56) create_columns -> . string datatype
+    (99) string -> . STRING
+    (100) string -> . QSTRING
+
+    STRING          shift and go to state 35
+    QSTRING         shift and go to state 36
+
+    create_columns                 shift and go to state 183
+    string                         shift and go to state 109
+
+state 151
+
+    (71) change_column -> ALTER COLUMN string . datatype
+    (57) datatype -> . INT
+    (58) datatype -> . INTEGER
+    (59) datatype -> . TINYINT
+    (60) datatype -> . SMALLINT
+    (61) datatype -> . MEDIUMINT
+    (62) datatype -> . BIGINT
+    (63) datatype -> . FLOAT
+    (64) datatype -> . DOUBLE
+    (65) datatype -> . DECIMAL
+    (66) datatype -> . CHAR ( NUMBER )
+    (67) datatype -> . VARCHAR ( NUMBER )
+
+    INT             shift and go to state 138
+    INTEGER         shift and go to state 139
+    TINYINT         shift and go to state 140
+    SMALLINT        shift and go to state 141
+    MEDIUMINT       shift and go to state 142
+    BIGINT          shift and go to state 143
+    FLOAT           shift and go to state 144
+    DOUBLE          shift and go to state 145
+    DECIMAL         shift and go to state 146
+    CHAR            shift and go to state 147
+    VARCHAR         shift and go to state 148
+
+    datatype                       shift and go to state 184
+
+state 152
+
+    (69) change_column -> ADD string datatype .
+
+    END             reduce using rule 69 (change_column -> ADD string datatype .)
+
+
+state 153
+
+    (70) change_column -> DROP COLUMN string .
+
+    END             reduce using rule 70 (change_column -> DROP COLUMN string .)
+
+
+state 154
+
+    (10) select -> SELECT columns FROM table join where group_by . having order_by limit
+    (28) having -> . HAVING conditions
+    (29) having -> . empty
+    (117) empty -> .
+
+    HAVING          shift and go to state 186
+    ORDER           reduce using rule 117 (empty -> .)
+    LIMIT           reduce using rule 117 (empty -> .)
+    END             reduce using rule 117 (empty -> .)
+
+    having                         shift and go to state 185
+    empty                          shift and go to state 187
+
+state 155
+
+    (26) group_by -> GROUP . BY strings
+
+    BY              shift and go to state 188
+
+
+state 156
+
+    (27) group_by -> empty .
+
+    HAVING          reduce using rule 27 (group_by -> empty .)
+    ORDER           reduce using rule 27 (group_by -> empty .)
+    LIMIT           reduce using rule 27 (group_by -> empty .)
+    END             reduce using rule 27 (group_by -> empty .)
+
+
+state 157
+
+    (17) join -> INNER JOIN table . on join
+    (12) table -> table . COMMA table
+    (23) on -> . ON item COMPARISON item
+
+    COMMA           shift and go to state 57
+    ON              shift and go to state 159
+
+    on                             shift and go to state 189
+
+state 158
+
+    (21) join -> JOIN table on . join
+    (17) join -> . INNER JOIN table on join
+    (18) join -> . LEFT JOIN table on join
+    (19) join -> . RIGHT JOIN table on join
+    (20) join -> . FULL JOIN table on join
+    (21) join -> . JOIN table on join
+    (22) join -> . empty
+    (117) empty -> .
+
+    INNER           shift and go to state 89
+    LEFT            shift and go to state 91
+    RIGHT           shift and go to state 92
+    FULL            shift and go to state 93
+    JOIN            shift and go to state 90
+    WHERE           reduce using rule 117 (empty -> .)
+    GROUP           reduce using rule 117 (empty -> .)
+    HAVING          reduce using rule 117 (empty -> .)
+    ORDER           reduce using rule 117 (empty -> .)
+    LIMIT           reduce using rule 117 (empty -> .)
+    END             reduce using rule 117 (empty -> .)
+
+    join                           shift and go to state 190
+    empty                          shift and go to state 94
+
+state 159
+
+    (23) on -> ON . item COMPARISON item
+    (89) item -> . string
+    (90) item -> . NUMBER
+    (91) item -> . *
+    (92) item -> . string . item
+    (99) string -> . STRING
+    (100) string -> . QSTRING
+
+    NUMBER          shift and go to state 33
+    *               shift and go to state 34
+    STRING          shift and go to state 35
+    QSTRING         shift and go to state 36
+
+    item                           shift and go to state 191
+    string                         shift and go to state 32
+
+state 160
+
+    (18) join -> LEFT JOIN table . on join
+    (12) table -> table . COMMA table
+    (23) on -> . ON item COMPARISON item
+
+    COMMA           shift and go to state 57
+    ON              shift and go to state 159
+
+    on                             shift and go to state 192
+
+state 161
+
+    (19) join -> RIGHT JOIN table . on join
+    (12) table -> table . COMMA table
+    (23) on -> . ON item COMPARISON item
+
+    COMMA           shift and go to state 57
+    ON              shift and go to state 159
+
+    on                             shift and go to state 193
+
+state 162
+
+    (20) join -> FULL JOIN table . on join
+    (12) table -> table . COMMA table
+    (23) on -> . ON item COMPARISON item
+
+    COMMA           shift and go to state 57
+    ON              shift and go to state 159
+
+    on                             shift and go to state 194
+
+state 163
+
+    (11) select -> SELECT columns into table FROM table join . where group_by having order_by limit
+    (24) where -> . WHERE conditions
+    (25) where -> . empty
+    (117) empty -> .
+
+    WHERE           shift and go to state 81
+    GROUP           reduce using rule 117 (empty -> .)
+    HAVING          reduce using rule 117 (empty -> .)
+    ORDER           reduce using rule 117 (empty -> .)
+    LIMIT           reduce using rule 117 (empty -> .)
+    END             reduce using rule 117 (empty -> .)
+
+    where                          shift and go to state 195
+    empty                          shift and go to state 82
+
+state 164
+
+    (51) values -> values COMMA . values
+    (51) values -> . values COMMA values
+    (52) values -> . ( value )
+
+    (               shift and go to state 124
+
+    values                         shift and go to state 196
+
+state 165
+
+    (52) values -> ( value . )
+    (48) value -> value . COMMA value
+
+    )               shift and go to state 197
+    COMMA           shift and go to state 198
+
+
+state 166
+
+    (49) value -> string .
+
+    )               reduce using rule 49 (value -> string .)
+    COMMA           reduce using rule 49 (value -> string .)
+
+
+state 167
+
+    (50) value -> NUMBER .
+
+    )               reduce using rule 50 (value -> NUMBER .)
+    COMMA           reduce using rule 50 (value -> NUMBER .)
+
+
+state 168
+
+    (101) conditions -> conditions AND conditions .
+    (101) conditions -> conditions . AND conditions
+    (102) conditions -> conditions . OR conditions
+
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+    END             reduce using rule 101 (conditions -> conditions AND conditions .)
+    GROUP           reduce using rule 101 (conditions -> conditions AND conditions .)
+    HAVING          reduce using rule 101 (conditions -> conditions AND conditions .)
+    ORDER           reduce using rule 101 (conditions -> conditions AND conditions .)
+    LIMIT           reduce using rule 101 (conditions -> conditions AND conditions .)
+    )               reduce using rule 101 (conditions -> conditions AND conditions .)
+    AND             shift and go to state 126
+    OR              shift and go to state 127
+
+  ! AND             [ reduce using rule 101 (conditions -> conditions AND conditions .) ]
+  ! OR              [ reduce using rule 101 (conditions -> conditions AND conditions .) ]
+
+
+state 169
+
+    (102) conditions -> conditions OR conditions .
+    (101) conditions -> conditions . AND conditions
+    (102) conditions -> conditions . OR conditions
+
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+    END             reduce using rule 102 (conditions -> conditions OR conditions .)
+    GROUP           reduce using rule 102 (conditions -> conditions OR conditions .)
+    HAVING          reduce using rule 102 (conditions -> conditions OR conditions .)
+    ORDER           reduce using rule 102 (conditions -> conditions OR conditions .)
+    LIMIT           reduce using rule 102 (conditions -> conditions OR conditions .)
+    )               reduce using rule 102 (conditions -> conditions OR conditions .)
+    AND             shift and go to state 126
+    OR              shift and go to state 127
+
+  ! AND             [ reduce using rule 102 (conditions -> conditions OR conditions .) ]
+  ! OR              [ reduce using rule 102 (conditions -> conditions OR conditions .) ]
+
+
+state 170
+
+    (103) conditions -> ( conditions ) .
+
+    AND             reduce using rule 103 (conditions -> ( conditions ) .)
+    OR              reduce using rule 103 (conditions -> ( conditions ) .)
+    END             reduce using rule 103 (conditions -> ( conditions ) .)
+    GROUP           reduce using rule 103 (conditions -> ( conditions ) .)
+    HAVING          reduce using rule 103 (conditions -> ( conditions ) .)
+    ORDER           reduce using rule 103 (conditions -> ( conditions ) .)
+    LIMIT           reduce using rule 103 (conditions -> ( conditions ) .)
+    )               reduce using rule 103 (conditions -> ( conditions ) .)
+
+
+state 171
+
+    (105) compare -> column COMPARISON item .
+
+    AND             reduce using rule 105 (compare -> column COMPARISON item .)
+    OR              reduce using rule 105 (compare -> column COMPARISON item .)
+    END             reduce using rule 105 (compare -> column COMPARISON item .)
+    GROUP           reduce using rule 105 (compare -> column COMPARISON item .)
+    HAVING          reduce using rule 105 (compare -> column COMPARISON item .)
+    ORDER           reduce using rule 105 (compare -> column COMPARISON item .)
+    LIMIT           reduce using rule 105 (compare -> column COMPARISON item .)
+    )               reduce using rule 105 (compare -> column COMPARISON item .)
+
+
+state 172
+
+    (106) compare -> column like QSTRING .
+
+    AND             reduce using rule 106 (compare -> column like QSTRING .)
+    OR              reduce using rule 106 (compare -> column like QSTRING .)
+    END             reduce using rule 106 (compare -> column like QSTRING .)
+    GROUP           reduce using rule 106 (compare -> column like QSTRING .)
+    HAVING          reduce using rule 106 (compare -> column like QSTRING .)
+    ORDER           reduce using rule 106 (compare -> column like QSTRING .)
+    LIMIT           reduce using rule 106 (compare -> column like QSTRING .)
+    )               reduce using rule 106 (compare -> column like QSTRING .)
+
+
+state 173
+
+    (107) compare -> column BETWEEN item . AND item
+
+    AND             shift and go to state 199
+
+
+state 174
+
+    (108) compare -> column IS null .
+
+    AND             reduce using rule 108 (compare -> column IS null .)
+    OR              reduce using rule 108 (compare -> column IS null .)
+    END             reduce using rule 108 (compare -> column IS null .)
+    GROUP           reduce using rule 108 (compare -> column IS null .)
+    HAVING          reduce using rule 108 (compare -> column IS null .)
+    ORDER           reduce using rule 108 (compare -> column IS null .)
+    LIMIT           reduce using rule 108 (compare -> column IS null .)
+    )               reduce using rule 108 (compare -> column IS null .)
+
+
+state 175
+
+    (115) null -> NULL .
+
+    AND             reduce using rule 115 (null -> NULL .)
+    OR              reduce using rule 115 (null -> NULL .)
+    END             reduce using rule 115 (null -> NULL .)
+    GROUP           reduce using rule 115 (null -> NULL .)
+    HAVING          reduce using rule 115 (null -> NULL .)
+    ORDER           reduce using rule 115 (null -> NULL .)
+    LIMIT           reduce using rule 115 (null -> NULL .)
+    )               reduce using rule 115 (null -> NULL .)
+
+
+state 176
+
+    (116) null -> NOT . NULL
+
+    NULL            shift and go to state 200
+
+
+state 177
+
+    (109) compare -> column in lritems .
+
+    AND             reduce using rule 109 (compare -> column in lritems .)
+    OR              reduce using rule 109 (compare -> column in lritems .)
+    END             reduce using rule 109 (compare -> column in lritems .)
+    GROUP           reduce using rule 109 (compare -> column in lritems .)
+    HAVING          reduce using rule 109 (compare -> column in lritems .)
+    ORDER           reduce using rule 109 (compare -> column in lritems .)
+    LIMIT           reduce using rule 109 (compare -> column in lritems .)
+    )               reduce using rule 109 (compare -> column in lritems .)
+
+
+state 178
+
+    (110) lritems -> ( . items )
+    (97) items -> . strings
+    (98) items -> . numbers
+    (95) strings -> . strings COMMA strings
+    (96) strings -> . string
+    (93) numbers -> . numbers COMMA numbers
+    (94) numbers -> . NUMBER
+    (99) string -> . STRING
+    (100) string -> . QSTRING
+
+    NUMBER          shift and go to state 205
+    STRING          shift and go to state 35
+    QSTRING         shift and go to state 36
+
+    items                          shift and go to state 201
+    strings                        shift and go to state 202
+    numbers                        shift and go to state 203
+    string                         shift and go to state 204
+
+state 179
+
+    (112) like -> NOT LIKE .
+
+    QSTRING         reduce using rule 112 (like -> NOT LIKE .)
+
+
+state 180
+
+    (114) in -> NOT IN .
+
+    (               reduce using rule 114 (in -> NOT IN .)
+
+
+state 181
+
+    (66) datatype -> CHAR ( . NUMBER )
+
+    NUMBER          shift and go to state 206
+
+
+state 182
+
+    (67) datatype -> VARCHAR ( . NUMBER )
+
+    NUMBER          shift and go to state 207
+
+
+state 183
+
+    (55) create_columns -> create_columns COMMA create_columns .
+    (55) create_columns -> create_columns . COMMA create_columns
+
+  ! shift/reduce conflict for COMMA resolved as shift
+    )               reduce using rule 55 (create_columns -> create_columns COMMA create_columns .)
+    COMMA           shift and go to state 150
+
+  ! COMMA           [ reduce using rule 55 (create_columns -> create_columns COMMA create_columns .) ]
+
+
+state 184
+
+    (71) change_column -> ALTER COLUMN string datatype .
+
+    END             reduce using rule 71 (change_column -> ALTER COLUMN string datatype .)
+
+
+state 185
+
+    (10) select -> SELECT columns FROM table join where group_by having . order_by limit
+    (30) order_by -> . ORDER BY order
+    (31) order_by -> . empty
+    (117) empty -> .
+
+    ORDER           shift and go to state 209
+    LIMIT           reduce using rule 117 (empty -> .)
+    END             reduce using rule 117 (empty -> .)
+
+    order_by                       shift and go to state 208
+    empty                          shift and go to state 210
+
+state 186
+
+    (28) having -> HAVING . conditions
+    (101) conditions -> . conditions AND conditions
+    (102) conditions -> . conditions OR conditions
+    (103) conditions -> . ( conditions )
+    (104) conditions -> . compare
+    (105) compare -> . column COMPARISON item
+    (106) compare -> . column like QSTRING
+    (107) compare -> . column BETWEEN item AND item
+    (108) compare -> . column IS null
+    (109) compare -> . column in lritems
+    (78) column -> . function ( distinct_item )
+    (79) column -> . function ( item )
+    (80) column -> . distinct_item
+    (81) column -> . item
+    (84) function -> . COUNT
+    (85) function -> . SUM
+    (86) function -> . AVG
+    (87) function -> . MIN
+    (88) function -> . MAX
+    (82) distinct_item -> . DISTINCT item
+    (83) distinct_item -> . DISTINCT ( item )
+    (89) item -> . string
+    (90) item -> . NUMBER
+    (91) item -> . *
+    (92) item -> . string . item
+    (99) string -> . STRING
+    (100) string -> . QSTRING
+
+    (               shift and go to state 106
+    COUNT           shift and go to state 26
+    SUM             shift and go to state 27
+    AVG             shift and go to state 28
+    MIN             shift and go to state 29
+    MAX             shift and go to state 30
+    DISTINCT        shift and go to state 31
+    NUMBER          shift and go to state 33
+    *               shift and go to state 34
+    STRING          shift and go to state 35
+    QSTRING         shift and go to state 36
+
+    conditions                     shift and go to state 211
+    compare                        shift and go to state 107
+    column                         shift and go to state 108
+    item                           shift and go to state 23
+    function                       shift and go to state 24
+    distinct_item                  shift and go to state 25
+    string                         shift and go to state 32
+
+state 187
+
+    (29) having -> empty .
+
+    ORDER           reduce using rule 29 (having -> empty .)
+    LIMIT           reduce using rule 29 (having -> empty .)
+    END             reduce using rule 29 (having -> empty .)
+
+
+state 188
+
+    (26) group_by -> GROUP BY . strings
+    (95) strings -> . strings COMMA strings
+    (96) strings -> . string
+    (99) string -> . STRING
+    (100) string -> . QSTRING
+
+    STRING          shift and go to state 35
+    QSTRING         shift and go to state 36
+
+    strings                        shift and go to state 212
+    string                         shift and go to state 204
+
+state 189
+
+    (17) join -> INNER JOIN table on . join
+    (17) join -> . INNER JOIN table on join
+    (18) join -> . LEFT JOIN table on join
+    (19) join -> . RIGHT JOIN table on join
+    (20) join -> . FULL JOIN table on join
+    (21) join -> . JOIN table on join
+    (22) join -> . empty
+    (117) empty -> .
+
+    INNER           shift and go to state 89
+    LEFT            shift and go to state 91
+    RIGHT           shift and go to state 92
+    FULL            shift and go to state 93
+    JOIN            shift and go to state 90
+    WHERE           reduce using rule 117 (empty -> .)
+    GROUP           reduce using rule 117 (empty -> .)
+    HAVING          reduce using rule 117 (empty -> .)
+    ORDER           reduce using rule 117 (empty -> .)
+    LIMIT           reduce using rule 117 (empty -> .)
+    END             reduce using rule 117 (empty -> .)
+
+    join                           shift and go to state 213
+    empty                          shift and go to state 94
+
+state 190
+
+    (21) join -> JOIN table on join .
+
+    WHERE           reduce using rule 21 (join -> JOIN table on join .)
+    GROUP           reduce using rule 21 (join -> JOIN table on join .)
+    HAVING          reduce using rule 21 (join -> JOIN table on join .)
+    ORDER           reduce using rule 21 (join -> JOIN table on join .)
+    LIMIT           reduce using rule 21 (join -> JOIN table on join .)
+    END             reduce using rule 21 (join -> JOIN table on join .)
+
+
+state 191
+
+    (23) on -> ON item . COMPARISON item
+
+    COMPARISON      shift and go to state 214
+
+
+state 192
+
+    (18) join -> LEFT JOIN table on . join
+    (17) join -> . INNER JOIN table on join
+    (18) join -> . LEFT JOIN table on join
+    (19) join -> . RIGHT JOIN table on join
+    (20) join -> . FULL JOIN table on join
+    (21) join -> . JOIN table on join
+    (22) join -> . empty
+    (117) empty -> .
+
+    INNER           shift and go to state 89
+    LEFT            shift and go to state 91
+    RIGHT           shift and go to state 92
+    FULL            shift and go to state 93
+    JOIN            shift and go to state 90
+    WHERE           reduce using rule 117 (empty -> .)
+    GROUP           reduce using rule 117 (empty -> .)
+    HAVING          reduce using rule 117 (empty -> .)
+    ORDER           reduce using rule 117 (empty -> .)
+    LIMIT           reduce using rule 117 (empty -> .)
+    END             reduce using rule 117 (empty -> .)
+
+    join                           shift and go to state 215
+    empty                          shift and go to state 94
+
+state 193
+
+    (19) join -> RIGHT JOIN table on . join
+    (17) join -> . INNER JOIN table on join
+    (18) join -> . LEFT JOIN table on join
+    (19) join -> . RIGHT JOIN table on join
+    (20) join -> . FULL JOIN table on join
+    (21) join -> . JOIN table on join
+    (22) join -> . empty
+    (117) empty -> .
+
+    INNER           shift and go to state 89
+    LEFT            shift and go to state 91
+    RIGHT           shift and go to state 92
+    FULL            shift and go to state 93
+    JOIN            shift and go to state 90
+    WHERE           reduce using rule 117 (empty -> .)
+    GROUP           reduce using rule 117 (empty -> .)
+    HAVING          reduce using rule 117 (empty -> .)
+    ORDER           reduce using rule 117 (empty -> .)
+    LIMIT           reduce using rule 117 (empty -> .)
+    END             reduce using rule 117 (empty -> .)
+
+    join                           shift and go to state 216
+    empty                          shift and go to state 94
+
+state 194
+
+    (20) join -> FULL JOIN table on . join
+    (17) join -> . INNER JOIN table on join
+    (18) join -> . LEFT JOIN table on join
+    (19) join -> . RIGHT JOIN table on join
+    (20) join -> . FULL JOIN table on join
+    (21) join -> . JOIN table on join
+    (22) join -> . empty
+    (117) empty -> .
+
+    INNER           shift and go to state 89
+    LEFT            shift and go to state 91
+    RIGHT           shift and go to state 92
+    FULL            shift and go to state 93
+    JOIN            shift and go to state 90
+    WHERE           reduce using rule 117 (empty -> .)
+    GROUP           reduce using rule 117 (empty -> .)
+    HAVING          reduce using rule 117 (empty -> .)
+    ORDER           reduce using rule 117 (empty -> .)
+    LIMIT           reduce using rule 117 (empty -> .)
+    END             reduce using rule 117 (empty -> .)
+
+    join                           shift and go to state 217
+    empty                          shift and go to state 94
+
+state 195
+
+    (11) select -> SELECT columns into table FROM table join where . group_by having order_by limit
+    (26) group_by -> . GROUP BY strings
+    (27) group_by -> . empty
+    (117) empty -> .
+
+    GROUP           shift and go to state 155
+    HAVING          reduce using rule 117 (empty -> .)
+    ORDER           reduce using rule 117 (empty -> .)
+    LIMIT           reduce using rule 117 (empty -> .)
+    END             reduce using rule 117 (empty -> .)
+
+    group_by                       shift and go to state 218
+    empty                          shift and go to state 156
+
+state 196
+
+    (51) values -> values COMMA values .
+    (51) values -> values . COMMA values
+
+  ! shift/reduce conflict for COMMA resolved as shift
+    END             reduce using rule 51 (values -> values COMMA values .)
+    COMMA           shift and go to state 164
+
+  ! COMMA           [ reduce using rule 51 (values -> values COMMA values .) ]
+
+
+state 197
+
+    (52) values -> ( value ) .
+
+    COMMA           reduce using rule 52 (values -> ( value ) .)
+    END             reduce using rule 52 (values -> ( value ) .)
+
+
+state 198
+
+    (48) value -> value COMMA . value
+    (48) value -> . value COMMA value
+    (49) value -> . string
+    (50) value -> . NUMBER
+    (99) string -> . STRING
+    (100) string -> . QSTRING
+
+    NUMBER          shift and go to state 167
+    STRING          shift and go to state 35
+    QSTRING         shift and go to state 36
+
+    value                          shift and go to state 219
+    string                         shift and go to state 166
+
+state 199
+
+    (107) compare -> column BETWEEN item AND . item
+    (89) item -> . string
+    (90) item -> . NUMBER
+    (91) item -> . *
+    (92) item -> . string . item
+    (99) string -> . STRING
+    (100) string -> . QSTRING
+
+    NUMBER          shift and go to state 33
+    *               shift and go to state 34
+    STRING          shift and go to state 35
+    QSTRING         shift and go to state 36
+
+    item                           shift and go to state 220
+    string                         shift and go to state 32
+
+state 200
+
+    (116) null -> NOT NULL .
+
+    AND             reduce using rule 116 (null -> NOT NULL .)
+    OR              reduce using rule 116 (null -> NOT NULL .)
+    END             reduce using rule 116 (null -> NOT NULL .)
+    GROUP           reduce using rule 116 (null -> NOT NULL .)
+    HAVING          reduce using rule 116 (null -> NOT NULL .)
+    ORDER           reduce using rule 116 (null -> NOT NULL .)
+    LIMIT           reduce using rule 116 (null -> NOT NULL .)
+    )               reduce using rule 116 (null -> NOT NULL .)
+
+
+state 201
+
+    (110) lritems -> ( items . )
+
+    )               shift and go to state 221
+
+
+state 202
+
+    (97) items -> strings .
+    (95) strings -> strings . COMMA strings
+
+    )               reduce using rule 97 (items -> strings .)
+    COMMA           shift and go to state 222
+
+
+state 203
+
+    (98) items -> numbers .
+    (93) numbers -> numbers . COMMA numbers
+
+    )               reduce using rule 98 (items -> numbers .)
+    COMMA           shift and go to state 223
+
+
+state 204
+
+    (96) strings -> string .
+
+    COMMA           reduce using rule 96 (strings -> string .)
+    )               reduce using rule 96 (strings -> string .)
+    HAVING          reduce using rule 96 (strings -> string .)
+    ORDER           reduce using rule 96 (strings -> string .)
+    LIMIT           reduce using rule 96 (strings -> string .)
+    END             reduce using rule 96 (strings -> string .)
+
+
+state 205
+
+    (94) numbers -> NUMBER .
+
+    COMMA           reduce using rule 94 (numbers -> NUMBER .)
+    )               reduce using rule 94 (numbers -> NUMBER .)
+    END             reduce using rule 94 (numbers -> NUMBER .)
+
+
+state 206
+
+    (66) datatype -> CHAR ( NUMBER . )
+
+    )               shift and go to state 224
+
+
+state 207
+
+    (67) datatype -> VARCHAR ( NUMBER . )
+
+    )               shift and go to state 225
+
+
+state 208
+
+    (10) select -> SELECT columns FROM table join where group_by having order_by . limit
+    (32) limit -> . LIMIT numbers
+    (33) limit -> . empty
+    (117) empty -> .
+
+    LIMIT           shift and go to state 227
+    END             reduce using rule 117 (empty -> .)
+
+    limit                          shift and go to state 226
+    empty                          shift and go to state 228
+
+state 209
+
+    (30) order_by -> ORDER . BY order
+
+    BY              shift and go to state 229
+
+
+state 210
+
+    (31) order_by -> empty .
+
+    LIMIT           reduce using rule 31 (order_by -> empty .)
+    END             reduce using rule 31 (order_by -> empty .)
+
+
+state 211
+
+    (28) having -> HAVING conditions .
+    (101) conditions -> conditions . AND conditions
+    (102) conditions -> conditions . OR conditions
+
+    ORDER           reduce using rule 28 (having -> HAVING conditions .)
+    LIMIT           reduce using rule 28 (having -> HAVING conditions .)
+    END             reduce using rule 28 (having -> HAVING conditions .)
+    AND             shift and go to state 126
+    OR              shift and go to state 127
+
+
+state 212
+
+    (26) group_by -> GROUP BY strings .
+    (95) strings -> strings . COMMA strings
+
+    HAVING          reduce using rule 26 (group_by -> GROUP BY strings .)
+    ORDER           reduce using rule 26 (group_by -> GROUP BY strings .)
+    LIMIT           reduce using rule 26 (group_by -> GROUP BY strings .)
+    END             reduce using rule 26 (group_by -> GROUP BY strings .)
+    COMMA           shift and go to state 222
+
+
+state 213
+
+    (17) join -> INNER JOIN table on join .
+
+    WHERE           reduce using rule 17 (join -> INNER JOIN table on join .)
+    GROUP           reduce using rule 17 (join -> INNER JOIN table on join .)
+    HAVING          reduce using rule 17 (join -> INNER JOIN table on join .)
+    ORDER           reduce using rule 17 (join -> INNER JOIN table on join .)
+    LIMIT           reduce using rule 17 (join -> INNER JOIN table on join .)
+    END             reduce using rule 17 (join -> INNER JOIN table on join .)
+
+
+state 214
+
+    (23) on -> ON item COMPARISON . item
+    (89) item -> . string
+    (90) item -> . NUMBER
+    (91) item -> . *
+    (92) item -> . string . item
+    (99) string -> . STRING
+    (100) string -> . QSTRING
+
+    NUMBER          shift and go to state 33
+    *               shift and go to state 34
+    STRING          shift and go to state 35
+    QSTRING         shift and go to state 36
+
+    item                           shift and go to state 230
+    string                         shift and go to state 32
+
+state 215
+
+    (18) join -> LEFT JOIN table on join .
+
+    WHERE           reduce using rule 18 (join -> LEFT JOIN table on join .)
+    GROUP           reduce using rule 18 (join -> LEFT JOIN table on join .)
+    HAVING          reduce using rule 18 (join -> LEFT JOIN table on join .)
+    ORDER           reduce using rule 18 (join -> LEFT JOIN table on join .)
+    LIMIT           reduce using rule 18 (join -> LEFT JOIN table on join .)
+    END             reduce using rule 18 (join -> LEFT JOIN table on join .)
+
+
+state 216
+
+    (19) join -> RIGHT JOIN table on join .
+
+    WHERE           reduce using rule 19 (join -> RIGHT JOIN table on join .)
+    GROUP           reduce using rule 19 (join -> RIGHT JOIN table on join .)
+    HAVING          reduce using rule 19 (join -> RIGHT JOIN table on join .)
+    ORDER           reduce using rule 19 (join -> RIGHT JOIN table on join .)
+    LIMIT           reduce using rule 19 (join -> RIGHT JOIN table on join .)
+    END             reduce using rule 19 (join -> RIGHT JOIN table on join .)
+
+
+state 217
+
+    (20) join -> FULL JOIN table on join .
+
+    WHERE           reduce using rule 20 (join -> FULL JOIN table on join .)
+    GROUP           reduce using rule 20 (join -> FULL JOIN table on join .)
+    HAVING          reduce using rule 20 (join -> FULL JOIN table on join .)
+    ORDER           reduce using rule 20 (join -> FULL JOIN table on join .)
+    LIMIT           reduce using rule 20 (join -> FULL JOIN table on join .)
+    END             reduce using rule 20 (join -> FULL JOIN table on join .)
+
+
+state 218
+
+    (11) select -> SELECT columns into table FROM table join where group_by . having order_by limit
+    (28) having -> . HAVING conditions
+    (29) having -> . empty
+    (117) empty -> .
+
+    HAVING          shift and go to state 186
+    ORDER           reduce using rule 117 (empty -> .)
+    LIMIT           reduce using rule 117 (empty -> .)
+    END             reduce using rule 117 (empty -> .)
+
+    having                         shift and go to state 231
+    empty                          shift and go to state 187
+
+state 219
+
+    (48) value -> value COMMA value .
+    (48) value -> value . COMMA value
+
+  ! shift/reduce conflict for COMMA resolved as shift
+    )               reduce using rule 48 (value -> value COMMA value .)
+    COMMA           shift and go to state 198
+
+  ! COMMA           [ reduce using rule 48 (value -> value COMMA value .) ]
+
+
+state 220
+
+    (107) compare -> column BETWEEN item AND item .
+
+    AND             reduce using rule 107 (compare -> column BETWEEN item AND item .)
+    OR              reduce using rule 107 (compare -> column BETWEEN item AND item .)
+    END             reduce using rule 107 (compare -> column BETWEEN item AND item .)
+    GROUP           reduce using rule 107 (compare -> column BETWEEN item AND item .)
+    HAVING          reduce using rule 107 (compare -> column BETWEEN item AND item .)
+    ORDER           reduce using rule 107 (compare -> column BETWEEN item AND item .)
+    LIMIT           reduce using rule 107 (compare -> column BETWEEN item AND item .)
+    )               reduce using rule 107 (compare -> column BETWEEN item AND item .)
+
+
+state 221
+
+    (110) lritems -> ( items ) .
+
+    AND             reduce using rule 110 (lritems -> ( items ) .)
+    OR              reduce using rule 110 (lritems -> ( items ) .)
+    END             reduce using rule 110 (lritems -> ( items ) .)
+    GROUP           reduce using rule 110 (lritems -> ( items ) .)
+    HAVING          reduce using rule 110 (lritems -> ( items ) .)
+    ORDER           reduce using rule 110 (lritems -> ( items ) .)
+    LIMIT           reduce using rule 110 (lritems -> ( items ) .)
+    )               reduce using rule 110 (lritems -> ( items ) .)
+
+
+state 222
+
+    (95) strings -> strings COMMA . strings
+    (95) strings -> . strings COMMA strings
+    (96) strings -> . string
+    (99) string -> . STRING
+    (100) string -> . QSTRING
+
+    STRING          shift and go to state 35
+    QSTRING         shift and go to state 36
+
+    strings                        shift and go to state 232
+    string                         shift and go to state 204
+
+state 223
+
+    (93) numbers -> numbers COMMA . numbers
+    (93) numbers -> . numbers COMMA numbers
+    (94) numbers -> . NUMBER
+
+    NUMBER          shift and go to state 205
+
+    numbers                        shift and go to state 233
+
+state 224
+
+    (66) datatype -> CHAR ( NUMBER ) .
+
+    )               reduce using rule 66 (datatype -> CHAR ( NUMBER ) .)
+    COMMA           reduce using rule 66 (datatype -> CHAR ( NUMBER ) .)
+    END             reduce using rule 66 (datatype -> CHAR ( NUMBER ) .)
+
+
+state 225
+
+    (67) datatype -> VARCHAR ( NUMBER ) .
+
+    )               reduce using rule 67 (datatype -> VARCHAR ( NUMBER ) .)
+    COMMA           reduce using rule 67 (datatype -> VARCHAR ( NUMBER ) .)
+    END             reduce using rule 67 (datatype -> VARCHAR ( NUMBER ) .)
+
+
+state 226
+
+    (10) select -> SELECT columns FROM table join where group_by having order_by limit .
+
+    END             reduce using rule 10 (select -> SELECT columns FROM table join where group_by having order_by limit .)
+
+
+state 227
+
+    (32) limit -> LIMIT . numbers
+    (93) numbers -> . numbers COMMA numbers
+    (94) numbers -> . NUMBER
+
+    NUMBER          shift and go to state 205
+
+    numbers                        shift and go to state 234
+
+state 228
+
+    (33) limit -> empty .
+
+    END             reduce using rule 33 (limit -> empty .)
+
+
+state 229
+
+    (30) order_by -> ORDER BY . order
+    (34) order -> . order COMMA order
+    (35) order -> . string order_type
+    (99) string -> . STRING
+    (100) string -> . QSTRING
+
+    STRING          shift and go to state 35
+    QSTRING         shift and go to state 36
+
+    order                          shift and go to state 235
+    string                         shift and go to state 236
+
+state 230
+
+    (23) on -> ON item COMPARISON item .
+
+    INNER           reduce using rule 23 (on -> ON item COMPARISON item .)
+    LEFT            reduce using rule 23 (on -> ON item COMPARISON item .)
+    RIGHT           reduce using rule 23 (on -> ON item COMPARISON item .)
+    FULL            reduce using rule 23 (on -> ON item COMPARISON item .)
+    JOIN            reduce using rule 23 (on -> ON item COMPARISON item .)
+    WHERE           reduce using rule 23 (on -> ON item COMPARISON item .)
+    GROUP           reduce using rule 23 (on -> ON item COMPARISON item .)
+    HAVING          reduce using rule 23 (on -> ON item COMPARISON item .)
+    ORDER           reduce using rule 23 (on -> ON item COMPARISON item .)
+    LIMIT           reduce using rule 23 (on -> ON item COMPARISON item .)
+    END             reduce using rule 23 (on -> ON item COMPARISON item .)
+
+
+state 231
+
+    (11) select -> SELECT columns into table FROM table join where group_by having . order_by limit
+    (30) order_by -> . ORDER BY order
+    (31) order_by -> . empty
+    (117) empty -> .
+
+    ORDER           shift and go to state 209
+    LIMIT           reduce using rule 117 (empty -> .)
+    END             reduce using rule 117 (empty -> .)
+
+    order_by                       shift and go to state 237
+    empty                          shift and go to state 210
+
+state 232
+
+    (95) strings -> strings COMMA strings .
+    (95) strings -> strings . COMMA strings
+
+  ! shift/reduce conflict for COMMA resolved as shift
+    )               reduce using rule 95 (strings -> strings COMMA strings .)
+    HAVING          reduce using rule 95 (strings -> strings COMMA strings .)
+    ORDER           reduce using rule 95 (strings -> strings COMMA strings .)
+    LIMIT           reduce using rule 95 (strings -> strings COMMA strings .)
+    END             reduce using rule 95 (strings -> strings COMMA strings .)
+    COMMA           shift and go to state 222
+
+  ! COMMA           [ reduce using rule 95 (strings -> strings COMMA strings .) ]
+
+
+state 233
+
+    (93) numbers -> numbers COMMA numbers .
+    (93) numbers -> numbers . COMMA numbers
+
+  ! shift/reduce conflict for COMMA resolved as shift
+    )               reduce using rule 93 (numbers -> numbers COMMA numbers .)
+    END             reduce using rule 93 (numbers -> numbers COMMA numbers .)
+    COMMA           shift and go to state 223
+
+  ! COMMA           [ reduce using rule 93 (numbers -> numbers COMMA numbers .) ]
+
+
+state 234
+
+    (32) limit -> LIMIT numbers .
+    (93) numbers -> numbers . COMMA numbers
+
+    END             reduce using rule 32 (limit -> LIMIT numbers .)
+    COMMA           shift and go to state 223
+
+
+state 235
+
+    (30) order_by -> ORDER BY order .
+    (34) order -> order . COMMA order
+
+    LIMIT           reduce using rule 30 (order_by -> ORDER BY order .)
+    END             reduce using rule 30 (order_by -> ORDER BY order .)
+    COMMA           shift and go to state 238
+
+
+state 236
+
+    (35) order -> string . order_type
+    (36) order_type -> . ASC
+    (37) order_type -> . DESC
+    (38) order_type -> . empty
+    (117) empty -> .
+
+    ASC             shift and go to state 240
+    DESC            shift and go to state 241
+    COMMA           reduce using rule 117 (empty -> .)
+    LIMIT           reduce using rule 117 (empty -> .)
+    END             reduce using rule 117 (empty -> .)
+
+    order_type                     shift and go to state 239
+    empty                          shift and go to state 242
+
+state 237
+
+    (11) select -> SELECT columns into table FROM table join where group_by having order_by . limit
+    (32) limit -> . LIMIT numbers
+    (33) limit -> . empty
+    (117) empty -> .
+
+    LIMIT           shift and go to state 227
+    END             reduce using rule 117 (empty -> .)
+
+    limit                          shift and go to state 243
+    empty                          shift and go to state 228
+
+state 238
+
+    (34) order -> order COMMA . order
+    (34) order -> . order COMMA order
+    (35) order -> . string order_type
+    (99) string -> . STRING
+    (100) string -> . QSTRING
+
+    STRING          shift and go to state 35
+    QSTRING         shift and go to state 36
+
+    order                          shift and go to state 244
+    string                         shift and go to state 236
+
+state 239
+
+    (35) order -> string order_type .
+
+    COMMA           reduce using rule 35 (order -> string order_type .)
+    LIMIT           reduce using rule 35 (order -> string order_type .)
+    END             reduce using rule 35 (order -> string order_type .)
+
+
+state 240
+
+    (36) order_type -> ASC .
+
+    COMMA           reduce using rule 36 (order_type -> ASC .)
+    LIMIT           reduce using rule 36 (order_type -> ASC .)
+    END             reduce using rule 36 (order_type -> ASC .)
+
+
+state 241
+
+    (37) order_type -> DESC .
+
+    COMMA           reduce using rule 37 (order_type -> DESC .)
+    LIMIT           reduce using rule 37 (order_type -> DESC .)
+    END             reduce using rule 37 (order_type -> DESC .)
+
+
+state 242
+
+    (38) order_type -> empty .
+
+    COMMA           reduce using rule 38 (order_type -> empty .)
+    LIMIT           reduce using rule 38 (order_type -> empty .)
+    END             reduce using rule 38 (order_type -> empty .)
+
+
+state 243
+
+    (11) select -> SELECT columns into table FROM table join where group_by having order_by limit .
+
+    END             reduce using rule 11 (select -> SELECT columns into table FROM table join where group_by having order_by limit .)
+
+
+state 244
+
+    (34) order -> order COMMA order .
+    (34) order -> order . COMMA order
+
+  ! shift/reduce conflict for COMMA resolved as shift
+    LIMIT           reduce using rule 34 (order -> order COMMA order .)
+    END             reduce using rule 34 (order -> order COMMA order .)
+    COMMA           shift and go to state 238
+
+  ! COMMA           [ reduce using rule 34 (order -> order COMMA order .) ]
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for STRING in state 22 resolved as shift
+WARNING: shift/reduce conflict for COMMA in state 67 resolved as shift
+WARNING: shift/reduce conflict for COMMA in state 75 resolved as shift
+WARNING: shift/reduce conflict for COMMA in state 121 resolved as shift
+WARNING: shift/reduce conflict for AND in state 168 resolved as shift
+WARNING: shift/reduce conflict for OR in state 168 resolved as shift
+WARNING: shift/reduce conflict for AND in state 169 resolved as shift
+WARNING: shift/reduce conflict for OR in state 169 resolved as shift
+WARNING: shift/reduce conflict for COMMA in state 183 resolved as shift
+WARNING: shift/reduce conflict for COMMA in state 196 resolved as shift
+WARNING: shift/reduce conflict for COMMA in state 219 resolved as shift
+WARNING: shift/reduce conflict for COMMA in state 232 resolved as shift
+WARNING: shift/reduce conflict for COMMA in state 233 resolved as shift
+WARNING: shift/reduce conflict for COMMA in state 244 resolved as shift
